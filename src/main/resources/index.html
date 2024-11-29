@@ -22,11 +22,11 @@
       }
 
       .close {
-        color: #aaa;
+        margin-top: 1%;
         float: right;
-        font-size: 50px;
-        font-weight: bold;
-        margin-right: 5%;
+        cursor: pointer;
+        font-size: 30px;
+        margin-right: 2%;
       }
 
       .close:hover,
@@ -132,7 +132,7 @@
       .loader {
         width: 70px;
         height: 70px;
-        border: 5px solid #bebe22;
+        border: 5px solid #b6d0e2;
         border-radius: 50%;
         margin: auto;
         position: fixed;
@@ -203,6 +203,11 @@
       tr:nth-child(even) {
         background-color: #f4f4f4 !important;
       }
+
+      tr:nth-child(odd) {
+        background-color: #fff !important;
+      }
+      
 
       #myPieChart {
         height: 800px !important;
@@ -281,11 +286,14 @@
       .popup-header {
         text-align: right;
         margin-bottom: 2%;
-        margin-top: 2%;
       }
 
       .pointer {
         cursor: pointer;
+      }
+
+      .custom-btn {
+        outline: none !important;
       }
 
       #get-worker {
@@ -582,15 +590,15 @@
             var updatebutton = "updatebutton_" + i;
             tr +=
               "<td class='actions text-nowrap align-middle'>" +
-              "<button type='role' class='border-0 pointer edit-button bg-inherit' onclick='enableEdit(" +
+              "<button type='role' class='border-0 pointer edit-button custom-btn bg-inherit' onclick='enableEdit(" +
               i +
               ")' ><i class='fa-solid fa-house'></i><i class='material-icons' style='color: #4682b4'>&#xE254;</i></button>" +
-              "<button type='button' class='border-0 pointer bg-inherit' disabled id='" +
+              "<button type='button' class='border-0 pointer custom-btn bg-inherit' disabled id='" +
               updatebutton +
               "'  onclick='updateWorkers(" +
               i +
               ")'><span class='material-icons' style='color: green'>check_circle</span></button>" +
-              "<button type='button' class='border-0 pointer show-metrics bg-inherit' id='sm' value='Show Metrics'  onclick='showMetrics(" +
+              "<button type='button' class='border-0 pointer custom-btn show-metrics bg-inherit' id='sm' value='Show Metrics'  onclick='showMetrics(" +
               i +
               ', mEnvironment, document.getElementById("workerSizeDropdown_' +
               i +
@@ -775,14 +783,20 @@
               var modal = document.createElement("div");
               modal.className = "modal";
               modal.id = "metricsModal";
+              modal.style.border = "5px solid #E0E0E0";
+              modal.style.backgroundColor = "#FFFFFF";
 
               // Append the modal to the body
               document.body.appendChild(modal);
 
               // Create a close button for the modal
               var closeButton = document.createElement("span");
-              closeButton.innerHTML = "&times;";
-              closeButton.className = "close";
+              closeButton.innerHTML = "highlight_off";
+              closeButton.className = "material-icons close";
+              closeButton.style.color = "#EA3323";
+              closeButton.style.fontSize = "2rem";
+              closeButton.style.fontWeight = "700 !important";
+
               closeButton.onclick = function () {
                 modal.style.display = "none";
                 modal.innerHTML = ""; // Clear the content when closed
@@ -791,7 +805,7 @@
               // Append the close button to the modal
               modal.appendChild(closeButton);
 
-              var headButton = document.createElement("h2");
+              var headButton = document.createElement("h1");
               headButton.innerHTML = "Application: " + applicationName;
               headButton.className = "popup-header text-center";
               modal.appendChild(headButton);
@@ -803,7 +817,9 @@
               var chartsContainer = document.createElement("div");
               chartsContainer.id = "modalChartsContainer";
               chartsContainer.style.margin = "20px";
-              chartsContainer.style.border = "1px solid rgb(221, 221, 221)";
+              chartsContainer.style.border = "2px solid #D0D0D0";
+              chartsContainer.style.borderRadius = "5px";
+              chartsContainer.style.padding = "15px";
               modal.appendChild(chartsContainer);
 
               createChart(chartsContainer, "Event Data", data.events.events);
@@ -1047,12 +1063,14 @@
       labelCell.style.fontWeight = "bold";
       labelCell.style.color = "#333";
       labelCell.style.textAlign = "left";
+      labelCell.style.whiteSpace = "nowrap"
       labelCell.innerHTML = label;
 
       const valueCell = document.createElement("td");
       valueCell.style.padding = "10px";
       valueCell.style.border = "1px solid #ddd";
-      valueCell.style.color = "#555";
+      labelCell.style.fontWeight = "bold";
+      valueCell.style.color = "#333";
       valueCell.style.textAlign = "left";
       valueCell.innerHTML = value;
 
