@@ -257,14 +257,14 @@
       crossorigin="anonymous"
     />
     <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+  />
 
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  />  
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -483,7 +483,7 @@
             }
           }
           const showMetricsButtons =
-            document.getElementsByClassName("show-metrics");
+          document.getElementsByClassName("show-metrics");
           for (let i = 0; i < editButtons.length; i++) {
             if (data.details1[i]["status"] === "UNDEPLOYED") {
               showMetricsButtons[i].disabled = true;
@@ -518,12 +518,10 @@
       }
     }
     function updateWorkers(index) {
+      var element = document.getElementById("loader");
+      element.classList.remove("hide-loader");
       document.getElementById("loading-overlay").style.display = "block";
 
-      var spinner = new Spinner().spin(document.getElementById("loading"));
-
-      document.getElementById("loading").style.display = "block";
-      // Generate the unique ID for the dropdown in the specified row
       var dropdownId = "workersDropdown_" + index;
       var editedValue = document.getElementById(dropdownId).value;
       var dropdownIdofworkersize = "workerSizeDropdown_" + index;
@@ -550,26 +548,16 @@
         .then((response) => response.json())
         .then((response) => {
           document.getElementById("loading-overlay").style.display = "none";
-
-          spinner.stop();
-          document.getElementById("loading").style.display = "none";
+          $("#loader").addClass("hide-loader");
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.message}`);
           } else {
             alert("API Response: " + response.Message);
           }
-          // Parse the JSON response
-          // return response.json();
-        })
-        .then((data) => {
-          // Display the API response in a pop-up
-          //alert('API Response: ' + JSON.stringify(data));
         })
         .catch((error) => {
           document.getElementById("loading-overlay").style.display = "none";
-
-          spinner.stop();
-          document.getElementById("loading").style.display = "none";
+          $("#loader").addClass("hide-loader");
           alert("Error: " + error.message);
         });
     }
@@ -582,7 +570,7 @@
 
       var appname = "app-nameid_" + index;
       var applicationName = document.getElementById(appname).innerText;
-      var Environ = mEnvironment; //document.getElementById("Environment").value;
+      var Environ = mEnvironment;
 
       var workersIndex = "workersDropdown_" + index;
       var workerSize = document.getElementById(workersIndex)?.value;
@@ -602,11 +590,12 @@
       } else if (workerSize === "4XLARGE") {
         workerSizeValue = 16;
       } else {
-        // Handle cases for other workerSize values if needed
         workerSizeValue = 0; // Default or fallback value if necessary
       }
       var workerSizeIndex = "workerSizeDropdown_" + index;
       var workers = document.getElementById(workerSizeIndex)?.value;
+
+      document.getElementById("loading-overlay").style.display = "block";
 
       var element = document.getElementById("loader");
       element.classList.remove("hide-loader");
@@ -628,6 +617,7 @@
         .then((data) => {
           var element = document.getElementById("loader");
           element.classList.add("hide-loader");
+          document.getElementById("loading-overlay").style.display = "none";
           // Create a modal for displaying line charts
           var modal = document.createElement("div");
           modal.className = "modal";
@@ -647,8 +637,6 @@
           closeButton.style.fontWeight = "700 !important";
 
           closeButton.onclick = function () {
-            //modal.style.display = "none";
-            //modal.innerHTML = ""; // Clear the content when closed
             modal.remove();
           };
 
@@ -674,29 +662,27 @@
 
           createChart(chartsContainer, "Event Data", data.events.events);
 
-          // Chart 2
           createMultiLineChart(
             chartsContainer,
             "Memory Total Used",
             data.memory,
             100,
             "memoryPercentageUsed"
-          ); // Pass the y-axis maximum value
+          ); 
 
-          // Chart 3
           createMultiLineChart(
             chartsContainer,
             "CPU Used",
             data.cpu,
             100,
             "cpu"
-          ); // Pass the y-axis maximum value
+          );
           modal.style.display = "block";
 
           function createChart(container, label, data, yAxisMax) {
             var chartCanvas = document.createElement("canvas");
-            chartCanvas.width = 1500; // Adjust the width as needed
-            chartCanvas.height = 400; // Adjust the height as needed
+            chartCanvas.width = 1500;
+            chartCanvas.height = 400;
             chartCanvas.marginBottom = "20px";
             container.appendChild(chartCanvas);
 
@@ -725,7 +711,7 @@
                   radius: 1,
                 },
               },
-              responsive: false, // Set to false to ensure fixed size
+              responsive: false,
               maintainAspectRatio: false,
               scales: {
                 x: {
@@ -749,7 +735,7 @@
                     offset: false,
                   },
                   min: 0,
-                  max: yAxisMax, // Set the maximum y-axis value
+                  max: yAxisMax,
                   beginAtZero: true,
                 },
               },
@@ -770,17 +756,15 @@
             statType
           ) {
             var chartCanvas = document.createElement("canvas");
-            chartCanvas.width = 1500; // Adjust the width as needed
-            chartCanvas.height = 400; // Adjust the height as needed
+            chartCanvas.width = 1500;
+            chartCanvas.height = 400;
             chartCanvas.marginBottom = "20px";
             container.appendChild(chartCanvas);
 
             var ctx = chartCanvas.getContext("2d");
 
-            // Extract unique IDs
             var uniqueIds = [...new Set(data.map((item) => item.id))];
 
-            // Prepare datasets for each ID
             var datasets = uniqueIds.map((id) => {
               var idData = data.find((item) => item.id === id);
               var idLabel = label + " (" + id + ")";
@@ -801,8 +785,8 @@
             var chartData = {
               labels: Object.keys(
                 statType == "cpu"
-                  ? data[0].statistics.cpu
-                  : data[0].statistics.memoryPercentageUsed
+                  ? data[0]?.statistics?.cpu
+                  : data[0]?.statistics?.memoryPercentageUsed
               ).map(function (timestamp) {
                 return moment(parseInt(timestamp)).format(
                   "YYYY-MM-DD HH:mm:ss"
@@ -817,7 +801,7 @@
                   radius: 1,
                 },
               },
-              responsive: false, // Set to false to ensure fixed size
+              responsive: false, 
               maintainAspectRatio: false,
               scales: {
                 x: {
@@ -841,7 +825,7 @@
                     offset: false,
                   },
                   min: 0,
-                  max: yAxisMax, // Set the maximum y-axis value
+                  max: yAxisMax, 
                   beginAtZero: true,
                 },
               },
@@ -868,9 +852,8 @@
           console.error("Error:", error);
         });
     }
-    // Function to create a container for AI suggestions
+
     function createAISuggestionsTable(modal, aiSuggestions) {
-      // Extract data from payload
       const {
         "AI-Suggested-WorkerSize": suggestedWorkerSize,
         "AI-Suggested-Workers": suggestedWorkers,
@@ -878,16 +861,8 @@
         justification,
       } = aiSuggestions;
 
-      // Create the table container
       const tableContainer = document.createElement("div");
-      /*  tableContainer.style.margin = "20px 0";
-      tableContainer.style.padding = "15px";
-      tableContainer.style.border = "1px solid #ddd";
-      tableContainer.style.borderRadius = "8px";
-      tableContainer.style.boxShadow = "0 2px 4px rgba(0, 0, 0, 0.1)";
-      tableContainer.style.backgroundColor = "#f9f9f9"; */
 
-      // Add a title for the table
       const title = document.createElement("h4");
       title.innerHTML = "AI Suggestions and Analysis";
       title.style.textAlign = "center";
@@ -896,14 +871,12 @@
       title.style.fontWeight = "bold";
       tableContainer.appendChild(title);
 
-      // Create the table element
       const table = document.createElement("table");
       table.style.width = "50%";
       table.style.borderCollapse = "collapse";
       table.style.fontSize = "14px";
       table.style.marginLeft = "25%";
 
-      // Helper to create a table row
       const createTableRow = (label, value) => {
         const row = document.createElement("tr");
         row.style.backgroundColor = "#fff !important";
@@ -961,90 +934,9 @@
         )
       );
 
-      // Append the table to the container
       tableContainer.appendChild(table);
-
-      // Append the table container to the modal
       modal.appendChild(tableContainer);
     }
-  </script>
-  <script>
-    function sortTable(n) {}
-    function sortTable1(n) {
-      var table,
-        rows,
-        switching,
-        i,
-        x,
-        y,
-        shouldSwitch,
-        dir,
-        switchcount = 0;
-      table = document.getElementById("app-details");
-      switching = true;
-      // Set the sorting direction to ascending:
-      dir = "asc";
-      /* Make a loop that will continue until
-    no switching has been done: */
-      while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /* Loop through all table rows (except the
-      first, which contains table headers): */
-        //console.log(rows.length)
-        for (i = 1; i < rows.length - 1; i++) {
-          // Start by saying there should be no switching:
-          shouldSwitch = false;
-          /* Get the two elements you want to compare,
-        one from current row and one from the next: */
-          x = rows[i].getElementsByTagName("TD")[n];
-          y = rows[i + 1].getElementsByTagName("TD")[n];
-
-          /* Check if the two rows should switch place,
-        based on the direction, asc or desc: */
-          if (dir == "asc") {
-            if (n == 0 || n == 3 || n == 4) {
-              if (Number(x.innerHTML) > Number(y.innerHTML)) {
-                shouldSwitch = true;
-                break;
-              }
-            } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } else if (dir == "desc") {
-            if (n == 0 || n == 3 || n == 4) {
-              if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                shouldSwitch = true;
-                break;
-              }
-            } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        if (shouldSwitch) {
-          /* If a switch has been marked, make the switch
-        and mark that a switch has been done: */
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          // Each time a switch is done, increase this count by 1:
-          switchcount++;
-        } else {
-          /* If no switching has been done AND the direction is "asc",
-        set the direction to "desc" and run the while loop again. */
-          if (switchcount == 0 && dir == "asc") {
-            dir = "desc";
-            switching = true;
-          }
-        }
-      }
-    }
-    // Usage example
   </script>
   <script type="text/javascript">
     function loadEnvironments() {
@@ -1053,7 +945,7 @@
         .then((response) => response.json())
         .then((data) => {
           const environmentDropdown = document.getElementById("Environment");
-          environmentDropdown.innerHTML = ""; // Clear existing options
+          environmentDropdown.innerHTML = "";
           // Populate dropdown with fetched environments
           data.environments.forEach((environment) => {
             const option = document.createElement("option");
