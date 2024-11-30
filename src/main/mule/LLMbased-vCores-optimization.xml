@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>                                                                                       
+<?xml version="1.0" encoding="UTF-8"?>                                                                                          
 <mule xmlns:ms-aichain="http://www.mulesoft.org/schema/mule/ms-aichain" xmlns:spring="http://www.mulesoft.org/schema/mule/spring" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:os="http://www.mulesoft.org/schema/mule/os" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
 http://www.mulesoft.org/schema/mule/os http://www.mulesoft.org/schema/mule/os/current/mule-os.xsd
 http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd
@@ -146,14 +146,14 @@ output application/json
     </flow>
     <flow name="get:\list-apps:LLMbased-vCores-optimization">
 		<spring:authorization-filter doc:name="Authorization filter" doc:id="1ddef2ab-34f0-4bdc-8beb-f83be59153ca" requiredAuthorities="ROLE_ADMIN" />
-		<ee:transform doc:name="Transform Message1" doc:id="c20a94d4-7a5d-4e79-93ed-466028c29b5d" >
+		<ee:transform doc:name="Set Env Var" doc:id="c20a94d4-7a5d-4e79-93ed-466028c29b5d" >
 			<ee:message />
 			<ee:variables >
 				<ee:set-variable variableName="vEnv" ><![CDATA[attributes.queryParams.Environment]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<flow-ref doc:name="Flow Reference" doc:id="2b34b980-8c9a-417c-b561-4123eb9ad9bc" name="auth" />
-		<http:request method="GET" doc:name="Request" doc:id="f857bca3-eebb-4d84-8c34-ed1cfe4a82e4" config-ref="HTTP_Request_configuration-Anypoint" path="/cloudhub/api/v2/applications" responseTimeout="600000">
+		<flow-ref doc:name="Call Auth" doc:id="2b34b980-8c9a-417c-b561-4123eb9ad9bc" name="auth" />
+		<http:request method="GET" doc:name="List Applications" doc:id="f857bca3-eebb-4d84-8c34-ed1cfe4a82e4" config-ref="HTTP_Request_configuration-Anypoint" path="/cloudhub/api/v2/applications" responseTimeout="600000">
 			<http:headers ><![CDATA[#[output application/java
 ---
 {
@@ -163,18 +163,15 @@ output application/json
 	
 }]]]></http:headers>
 		</http:request>
-		<ee:transform doc:name="Transform Message2" doc:id="0486d56c-611a-47e3-8d9b-2fcf91160429" >
+		<ee:transform doc:name="Format output" doc:id="0486d56c-611a-47e3-8d9b-2fcf91160429" >
 			<ee:message >
-				<ee:set-payload ><![CDATA[    %dw 2.0
-    import * from dw::core::Arrays
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::core::Arrays
 output application/json
-var multipliedValues = payload filter ($.status != "UNDEPLOYED") map ((item) -> item.workers.'type'.weight * item.workers.amount)
-var totalStaticIps = sizeOf(payload filter (item) -> item."staticIPsEnabled" == true) 
-var totalUndeployedAPIs = sizeOf(payload filter (item) -> item."status" == "UNDEPLOYED")
-var totalStartedAPIs = sizeOf(payload filter (item) -> item."status" == "STARTED")
 ---
 {
-	"details1": payload filter ($.status != "UNDEPLOYED" or $.staticIPsEnabled == true) map (item, index) -> {
+	"details1": payload filter ($.status != "UNDEPLOYED") map (item, index) -> 
+	{
 		"sl-no": index + 1,
 		"app-name": item.domain,
 		"status": item.status,
@@ -182,17 +179,7 @@ var totalStartedAPIs = sizeOf(payload filter (item) -> item."status" == "STARTED
 		"worker-size": item.workers.amount,
 		"mule-version": item.muleVersion.version,
 		"java-version": item.muleVersion.javaVersion,
-		"static-ip-enabled" : item.staticIPsEnabled,
-		 "color": if (item.workers.amount > 2 or item.workers."type".weight > 0.2 ) "#ff7f7f" else if (item.workers.amount == 2 or item.workers."type".weight == 0.2 ) "#F9E371" else if (item.staticIPsEnabled == true ) "grey" else "#ccffb3",
-		 "isEditing" : if (item.staticIPsEnabled == true and item.status== "UNDEPLOYED" ) "true" else "false"
-	},
-	"total-workers": {
-		"totalOrgWorkers": flatten(payload.workers.totalOrgWorkers)[0] as Number as String {format: "0.0", roundMode:"UP"} default "N/A",
-		"remainingOrgWorkers": flatten(payload.workers.remainingOrgWorkers)[0] as Number as String {format: "0.0", roundMode:"UP"} default "N/A",
-		"totalUsedByThisEnv":multipliedValues sumBy ((value) -> value)  default 0,
-		"totalStaticIpsByThisEnv": totalStaticIps  default 0,
-		"totalStartedAPIs": totalStartedAPIs default 0,
-		"totalUndeployedAPIs": totalUndeployedAPIs default 0
+		"isEditing": if ( item.staticIPsEnabled == true and item.status== "UNDEPLOYED" ) "true" else "false"
 	}
 }
 ]]></ee:set-payload>
@@ -201,8 +188,8 @@ var totalStartedAPIs = sizeOf(payload filter (item) -> item."status" == "STARTED
     </flow>
     <flow name="get:\list-environments:LLMbased-vCores-optimization">
 		<spring:authorization-filter doc:name="Authorization filter" doc:id="273b68f5-0a4a-4006-9385-72e2a82bb723" requiredAuthorities="ROLE_ADMIN" />
-		<flow-ref doc:name="Flow Reference" doc:id="e9d52ff5-8def-403e-9e44-5b2678b32b6e" name="auth" />
-		<http:request method="GET" doc:name="Request" doc:id="ebd30d84-9325-4a11-a024-1383a71a74e0" config-ref="HTTP_Request_configuration-Anypoint" path="/accounts/api/organizations/{orgid}/environments" responseTimeout="600000">
+		<flow-ref doc:name="Call Auth" doc:id="e9d52ff5-8def-403e-9e44-5b2678b32b6e" name="auth" />
+		<http:request method="GET" doc:name="List Environments" doc:id="ebd30d84-9325-4a11-a024-1383a71a74e0" config-ref="HTTP_Request_configuration-Anypoint" path="/accounts/api/organizations/{orgid}/environments" responseTimeout="600000">
 			<http:headers ><![CDATA[#[output application/java
 ---
 {
@@ -217,7 +204,7 @@ var totalStartedAPIs = sizeOf(payload filter (item) -> item."status" == "STARTED
 	"orgid" : p('secure::credentials.org-id')
 }]]]></http:uri-params>
 		</http:request>
-		<ee:transform doc:name="Transform Message1" doc:id="d6b185ff-9863-41cc-925d-0e32aa97a6d3" >
+		<ee:transform doc:name="Show only non-prod envs" doc:id="d6b185ff-9863-41cc-925d-0e32aa97a6d3" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -233,7 +220,7 @@ output application/json
     </flow>
     <flow name="post:\update-workers:application\json:LLMbased-vCores-optimization">
 		<spring:authorization-filter doc:name="Authorization filter" doc:id="869b1cc6-c65f-492f-ae52-a4ad13b83fcd" requiredAuthorities="ROLE_ADMIN" />
-		<ee:transform doc:name="Transform Message1" doc:id="06255f5f-388c-44a6-bdc2-abda4c52d6b0" >
+		<ee:transform doc:name="Set Variables" doc:id="06255f5f-388c-44a6-bdc2-abda4c52d6b0" >
 			<ee:message />
 			<ee:variables >
 				<ee:set-variable variableName="vPayload" ><![CDATA[%dw 2.0
@@ -254,8 +241,8 @@ output application/json
 				<ee:set-variable variableName="vEnvId" ><![CDATA[payload.Environ]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<flow-ref doc:name="Flow Reference" doc:id="66b95872-1ec8-4b3a-97a0-ec448edf167b" name="auth" />
-		<http:request method="PUT" doc:name="Request" doc:id="1b056caa-1bda-416d-a83e-9ac606085896" config-ref="HTTP_Request_configuration-Anypoint" path="/cloudhub/api/v2/applications/{AppName}" responseTimeout="60000">
+		<flow-ref doc:name="Call Auth" doc:id="66b95872-1ec8-4b3a-97a0-ec448edf167b" name="auth" />
+		<http:request method="PUT" doc:name="Update workers on app" doc:id="1b056caa-1bda-416d-a83e-9ac606085896" config-ref="HTTP_Request_configuration-Anypoint" path="/cloudhub/api/v2/applications/{AppName}" responseTimeout="60000">
 			<http:body ><![CDATA[#[vars.vPayload]]]></http:body>
 			<http:headers ><![CDATA[#[output application/java
 ---
@@ -271,7 +258,7 @@ output application/json
 	"AppName" : vars.vAppName
 }]]]></http:uri-params>
 		</http:request>
-		<ee:transform doc:name="Transform Message2" doc:id="54371176-a4bb-4c2c-8fad-533aa591890e" >
+		<ee:transform doc:name="Format response" doc:id="54371176-a4bb-4c2c-8fad-533aa591890e" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -337,7 +324,7 @@ grant_type:"client_credentials"
 	</sub-flow>
 	<flow name="post:\show-metrics:LLMbased-vCores-optimization" doc:id="e81b316c-9d07-4985-a341-d4f5699aa3d1" >
 		<spring:authorization-filter doc:name="Authorization filter" doc:id="fc326e26-04ae-4ab2-8199-f9971c218374" requiredAuthorities="ROLE_ADMIN" />
-		<ee:transform doc:name="Transform Message" doc:id="ab3eaf13-510d-4ea5-bbf0-4a0f7f045790" >
+		<ee:transform doc:name="Set Variables" doc:id="ab3eaf13-510d-4ea5-bbf0-4a0f7f045790" >
 			<ee:message >
 			</ee:message>
 			<ee:variables >
@@ -347,15 +334,15 @@ grant_type:"client_credentials"
 				<ee:set-variable variableName="vApplicationName" ><![CDATA[payload.applicationName]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<flow-ref doc:name="Flow Reference" doc:id="42e289c7-a3d6-439b-bce6-bd8a4ce3f711" name="auth" />
-		<ee:transform doc:name="Transform Message" doc:id="5382e9a0-bf7a-44e5-ad33-81e804430331" >
+		<flow-ref doc:name="Call Auth" doc:id="42e289c7-a3d6-439b-bce6-bd8a4ce3f711" name="auth" />
+		<ee:transform doc:name="Set start and end time" doc:id="5382e9a0-bf7a-44e5-ad33-81e804430331" >
 			<ee:message />
 			<ee:variables >
 				<ee:set-variable variableName="startDate" ><![CDATA[now()-|P5D|]]></ee:set-variable>
 				<ee:set-variable variableName="endDate" ><![CDATA[now()]]></ee:set-variable>
 			</ee:variables>
 		</ee:transform>
-		<http:request method="GET" doc:name="Request" doc:id="c21fa079-4f19-49bd-a39e-c8b1e05a22af" config-ref="HTTP_Request_configuration-Anypoint" path="/cloudhub/api/v2/applications/{api-name}/dashboardStats" responseTimeout="900000" >
+		<http:request method="GET" doc:name="Call Stats API" doc:id="c21fa079-4f19-49bd-a39e-c8b1e05a22af" config-ref="HTTP_Request_configuration-Anypoint" path="/cloudhub/api/v2/applications/{api-name}/dashboardStats" responseTimeout="900000" >
 			<http:headers ><![CDATA[#[output application/java
 ---
 {
@@ -381,7 +368,7 @@ grant_type:"client_credentials"
 	
 }]]]></http:query-params>
 		</http:request>
-		<ee:transform doc:name="Transform Message1" doc:id="4b8511a4-bce2-4223-b8ba-ac4fef5831cf" >
+		<ee:transform doc:name="Save Payload in Stats variable" doc:id="4b8511a4-bce2-4223-b8ba-ac4fef5831cf" >
 			<ee:message >
 			
 </ee:message>
@@ -393,7 +380,7 @@ payload]]></ee:set-variable>
 			</ee:variables>
 		
 </ee:transform>
-		<ee:transform doc:name="Transform Message" doc:id="e1596a47-0004-43f3-8f01-b596b7cd7722">
+		<ee:transform doc:name="Transform stats format" doc:id="e1596a47-0004-43f3-8f01-b596b7cd7722">
 			<ee:message>
 				<ee:set-payload><![CDATA[%dw 2.0
 output application/json indent=false
@@ -420,10 +407,10 @@ fun roundToOneDecimal(num) = floor(num * 10) / 10
 output text/plain
 ---
 write(payload, "application/json",  { "indent": false })]]]></ms-aichain:dataset>
-			<ms-aichain:template ><![CDATA[#["Given the dataset with statistics for events, CPU usage, and memory usage of Mule API application " ++ vars.vApplicationName ++ ", and the current worker size of " ++ vars.vWorkerSizeValue ++ " with number of workers as " ++ vars.vWorkers ++ ", determine the optimal worker size and worker settings. Ensure that the settings are minimal to avoid wasting vcores. If average CPU or memory usage exceeds 70 percent, recommend increasing vcores or workers.If average CPU or memory usage is less than 20 percent, recommend reducing vcores or workers. Use the provided data and do not make assumptions. You may refer to this link: https://docs.mulesoft.com/cloudhub/cloudhub-architecture."]]]></ms-aichain:template>
+			<ms-aichain:template ><![CDATA[#["Given the dataset with statistics for events, CPU usage, and memory usage of Mule API application " ++ vars.vApplicationName ++ ", and the current worker size of " ++ vars.vWorkerSizeValue ++ " with number of workers as " ++ vars.vWorkers ++ ", determine the optimal worker size and worker settings. Ensure that the settings are minimal to avoid wasting vcores. Use the provided data and do not make assumptions. You may refer to this link: https://docs.mulesoft.com/cloudhub/cloudhub-architecture."]]]></ms-aichain:template>
 			<ms-aichain:instructions ><![CDATA[provide the response in json with fields AI-Suggested-WorkerSize, AI-Suggested-Workers, analysisOfDataset(maxCpuUsagePercentage,maxMemoryUsagePercentage,avgCpuUsagePercentage,avgMemoryUsagePercentage) and justification. AI-Suggested-WorkerSize and AI-Suggested-Workers will be same as existing settings if no changes are needed. If changes are needed then suggest the new settings in AI-Suggested-WorkerSize and AI-Suggested-Workers. Note that Maximum workers possible in mule is 8. The vcore sizes available are 0.1,0.2,1,2,4,8,16.]]></ms-aichain:instructions>
 		</ms-aichain:agent-define-prompt-template>
-		<ee:transform doc:name="Transform Message" doc:id="828590ce-3b7f-48a8-8434-44ecb7742523" >
+		<ee:transform doc:name="Read Response" doc:id="828590ce-3b7f-48a8-8434-44ecb7742523" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
@@ -431,7 +418,7 @@ output application/json
 read(payload.response, "application/json")]]></ee:set-payload>
 			</ee:message>
 		</ee:transform>
-		<ee:transform doc:name="Transform Message" doc:id="9dabae5a-19ff-4f66-bf79-77e61f8dc5b7" >
+		<ee:transform doc:name="Format Stats to display in JChart" doc:id="9dabae5a-19ff-4f66-bf79-77e61f8dc5b7" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[fun transformEvents(events) =
     {

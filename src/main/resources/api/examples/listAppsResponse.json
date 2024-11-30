@@ -2,7 +2,7 @@
   "details1": [
     {
       "sl-no": 1,
-      "app-name": "exp-abcam-network-tools-api-bau",
+      "app-name": "exp-orders-api",
       "status": "STARTED",
       "workers": 0.1,
       "worker-size": 1,
@@ -10,10 +10,5 @@
       "color": "#baf25e",
       "isEditing": "enabled"
     }
-  ],
-  "total-workers": {
-    "totalOrgWorkers": "103.5",
-    "remainingOrgWorkers": "12.5",
-    "totalUsedByThisEnv": 0.1
-  }
+  ]
 }

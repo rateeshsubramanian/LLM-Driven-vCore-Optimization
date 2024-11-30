@@ -1,11 +1,11 @@
 {
   "environments": [
     {
-      "id": "079bd0ea-4c2f-4ae0-b6ca-9879798asdfdf",
+      "id": "079bd0ea-7777-4ae0-b6ca-9879798asdfdf",
       "name": "DEV"
     },
     {
-      "id": "f4afc35d-abce-4d5e-8684-7987979adsfsa",
+      "id": "f4afc35d-abce-9999-8684-7987979adsfsa",
       "name": "SIT"
     }
   ]

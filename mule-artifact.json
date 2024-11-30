@@ -3,11 +3,7 @@
   "secureProperties": [
 		"security.key",
 		"admin.user",
-		"admin.pass",
-		"developer.user",
-		"developer.pass",
-		"support.user",
-		"support.pass"		
+		"admin.pass"		
 	],
       "classLoaderModelLoaderDescriptor": {
         "id": "mule",

@@ -11,7 +11,7 @@
         width: 100%;
         height: 100vh !important;
         overflow: auto !important;
-        background-color: rgb(235, 227, 227);
+        background-color: #f4f4f4;
       }
 
       .modal-content {
@@ -22,11 +22,11 @@
       }
 
       .close {
-        color: #aaa;
+        margin-top: 1%;
         float: right;
-        font-size: 50px;
-        font-weight: bold;
-        margin-right: 5%;
+        cursor: pointer;
+        font-size: 30px;
+        margin-right: 2%;
       }
 
       .close:hover,
@@ -36,12 +36,6 @@
         cursor: pointer;
       }
 
-      .download-btn {
-        float: right;
-        margin-top: 5px;
-        box-shadow: none;
-      }
-
       body {
         font-family: "Arial", sans-serif;
         margin: 0;
@@ -49,41 +43,8 @@
         background-color: #f4f4f4;
       }
 
-      #dashboard-container {
-       /*  display: flex; */
-        width: 100%;
-      }
-
       #app-workers {
-        /* width: 80%; */
-        padding-right: 20px;
-        /*  overflow: auto;
-      height: 100vh; */
-      }
-
-      #env-summary {
-        width: 80%;
-        padding-right: 12px;
-        padding-left: 12px;
-        /* overflow: auto;
-      height: 100vh; */
-      }
-
-      #sidebar {
-        width: 20%;
-        padding: 20px;
-        color: #fff;
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        background-color: #003580;
-      }
-
-      #main-content {
-        width: 80%;
-        padding: 20px;
-        background-color: #fff;
+        padding-right: 10px;
       }
 
       h1,
@@ -91,30 +52,11 @@
         color: #333;
       }
 
-      ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      li {
-        margin-bottom: 10px;
-      }
-
-      a {
-        text-decoration: none;
-        color: #fff;
-        font-weight: bold;
-      }
-
       canvas {
         width: 100%;
         height: 100%;
         max-width: none;
         max-height: none;
-      }
-
-      #result {
-        margin-top: 20px;
       }
 
       table {
@@ -127,96 +69,68 @@
         padding: 10px;
         border: 1px solid #ddd;
         text-align: center;
-        justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
+        justify-content: center;
+        align-items: center;
       }
 
       th {
         background-color: #155799;
         color: #fff;
         cursor: pointer;
-        justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
+        justify-content: center;
+        align-items: center;
       }
 
       .loader {
-  width: 70px;
-  height: 70px;
-  border: 5px solid #bebe22;
-  border-radius: 50%;
-  margin: auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Center the loader */
-  animation: rotation 1s linear infinite;
-}
+        width: 70px;
+        height: 70px;
+        border: 5px solid #c68fe6;
+        border-radius: 50%;
+        margin: auto;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation: rotation 1s linear infinite;
+      }
 
-.loader::after {
-  content: '';  
-  box-sizing: border-box;
-  position: absolute; /* Change position to absolute */
-  left: 50%;
-  top: 0;
-  background: #2c2a96;
-  width: 3px;
-  height: 24px;
-  transform: translateX(-50%);
-}
+      .loader::after {
+        content: "";
+        box-sizing: border-box;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        background: #2c2a96;
+        width: 3px;
+        height: 24px;
+        transform: translateX(-50%);
+      }
 
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
+      @keyframes rotation {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
 
       .hide-loader {
         display: none !important;
       }
 
-      .worker-filter {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 35%;
+      #filters-container {
+        background-color: #c68fe6;
         border-radius: 5px;
-        background-color: #dddd;
-        border-radius: 5px;
-        margin-right: 5%;
         padding: 10px;
       }
 
-      #filters-container {
-        background-color: #b6d0e2;
-        border-radius: 5px;
+      #app-details tr:nth-child(even) {
+        background-color: #f5efff !important;
       }
 
-      #sumForm {
-        margin-top: 5%;
-        margin-left: 10px;
-        width: 70%;
-      }
-
-      .info-parent {
-        margin-left: 5%;
-      }
-
-      .count {
-        font-weight: bold;
-        float: right;
-        margin-left: 5%;
-      }
-
-      tr:nth-child(even) {
-        background-color: #f4f4f4 !important;
-      }
-
-      #myPieChart {
-        height: 800px !important;
-        width: 800px !important;
+      #app-details tr:nth-child(odd) {
+        background-color: #fff !important;
       }
 
       #loading-overlay {
@@ -242,83 +156,37 @@
         z-index: 10000;
       }
 
-      .total-row {
-        background-color: #7e6969;
-        font-weight: bold;
-      }
-
-      #api-table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-
       .table-th {
-        /* position: sticky;*/
         text-align: center;
         top: 0;
         z-index: 2;
-        background-color: rgb(155, 160, 146);
-        justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
-      }
-
-      #api-table th {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        text-align: center;
-        background-color: #4682b4 !important;
-        justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
-      }
-
-      #app-details th {
-        /* position: sticky;*/
-        top: 0;
-        z-index: 2;
-        background-color: #4682b4;
-        text-align: center;
-        justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
-      }
-
-      #env-summary-header {
-        text-align: center;
-        justify-content: center; /* Horizontal centering */
-  align-items: center; /* Vertical centering */
+        background-color: #6c48c5;
+        justify-content: center; 
+        align-items: center;
       }
 
       .popup-header {
         text-align: right;
         margin-bottom: 2%;
-        margin-top: 2%;
+        color: #9b7ebd;
       }
 
       .pointer {
         cursor: pointer;
       }
 
+      .custom-btn {
+        outline: none !important;
+      }
+
       #get-worker {
-        background-color: #003580;
+        background-color: #433878;
         border-radius: 5px;
-      }
-
-      .custom-dropdown {
-        background-color: #4682b4 !important;
-        border-color: #4682b4 !important;
-      }
-
-      .custom-dropdown:hover {
-        background-color: #4682b4 !important;
-        border-color: #4682b4 !important;
+        border-color: #433878;
       }
 
       .custom-dropdown:focus {
         outline: 0 !important;
-      }
-
-      .info-label {
-        margin-bottom: 0px !important;
       }
 
       div.buttons {
@@ -332,23 +200,54 @@
       .bg-inherit {
         background-color: inherit !important;
       }
+      .aiSugContainer {
+        width: 50%;
+        padding-left: 40px;
+      }
+      button {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      button:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      button:active {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      select {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      select:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
+
+      select:active {
+        outline: none !important;
+        box-shadow: none !important;
+      }
     </style>
+
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Operations Dashboard</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css"
-    />
+
+    <title>LLMbased vCore Optimization</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"></script>
+
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment"></script>
     <script
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.min.js"></script>
+
     <link
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -357,54 +256,20 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-    />
-
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   </head>
 
   <body>
     <div id="dashboard-container">
-      <!-- <div id="sidebar">
-        <ul>
-          <li>
-            <a style="color: #9ca816; font-size: medium">Non-Production</a>
-          </li>
-          <li>
-            &nbsp;&nbsp;&nbsp;<a
-              href="#"
-              style="color: #fff"
-              onclick="retriveWorkers()"
-              >Manage App vCores</a
-            >
-          </li>
-          
-        </ul>
-      </div> -->
       <div id="app-workers">
         <div style="width: 100%; padding: 10px">
-          <div class="row ml-1" id="filters-container">
-            <!--  <form id="sumForm">
-            <label for="Environment">Environment</label>
-            <select class="dropdown btn dropdown-toggle btn-sm custom-dropdown" id="Environment"
-              name="Environment"></select>
-            <button type="button" id="get-worker" class="btn btn-primary btn-sm" onclick="retriveWorkers()">Get Worker
-              Details</button>
-            <br>
-          </form> -->
-            <div id="EnvironmentDiv" class="col-md-8 mt-5">
-              <label for="Environment">Environment</label>
+          <div class="ml-1 mb-2 mt-2" id="filters-container">
+            <div id="environmentDiv">
+              <label class="mr-2" for="Environment">Environment</label>
               <select
-                class="dropdown btn dropdown-toggle btn-sm custom-dropdown"
+                class="dropdown btn dropdown-toggle btn-sm custom-dropdown mr-2"
                 id="Environment"
                 name="Environment"
               ></select>
@@ -414,45 +279,8 @@
                 class="btn btn-primary btn-sm"
                 onclick="retriveWorkers()"
               >
-                Get Worker Details
+                Show Application Details
               </button>
-            </div>
-            <div class="col-md-4 py-3">
-              <div class="row">
-                <div class="col-md-10 text-nowrap">
-                  Total Organisation vCores:
-                </div>
-                <div class="col-md-2 pl-0" id="totalOrgWorkers"></div>
-              </div>
-              <div class="row">
-                <div class="col-md-10 text-nowrap">
-                  Available Organisation vCores:
-                </div>
-                <div class="col-md-2 pl-0" id="remainingOrgWorkers"></div>
-              </div>
-              <div class="row">
-                <div class="col-md-10 text-nowrap">
-                  Total vCores Used By This Env:
-                </div>
-                <div class="col-md-2 pl-0" id="totalUsedByThisEnv"></div>
-              </div>
-              <div class="row">
-                <div class="col-md-10 text-nowrap">
-                  Total Static IPs Used By This Env:
-                </div>
-                <div
-                  class="col-md-2 pl-0"
-                  id="totalStaticIPsUsedByThisEnv"
-                ></div>
-              </div>
-              <div class="row">
-                <div class="col-md-10 text-nowrap">Total APIs Deployed:</div>
-                <div class="col-md-2 pl-0" id="totalStartedAPIs"></div>
-              </div>
-              <div class="row">
-                <div class="col-md-10 text-nowrap">Total APIs UnDeployed:</div>
-                <div class="col-md-2 pl-0" id="totalUndeployedAPIs"></div>
-              </div>
             </div>
           </div>
           <div
@@ -497,17 +325,8 @@
           </div>
         </div>
       </div>
-      <div>
-        <!-- <p>Distribution of vCores across all environments in Non Prod VPC</p> -->
-        <div id="pie-chart" style="width: 100%; margin: auto">
-          <h2 id="pie-header" class="popup-header"></h2>
-          <canvas id="myPieChart"></canvas>
-        </div>
-      </div>
-      <div id="env-summary"></div>
       <div class="loader" id="loader"></div>
     </div>
-    <div id="chartsContainer"></div>
     <div id="loading-overlay"></div>
     <div id="loading"></div>
   </body>
@@ -515,28 +334,20 @@
     function retriveWorkers() {
       const Environment = document.getElementById("Environment").value;
       $("#app-details tbody tr").remove();
-      $("#EnvironmentDiv").removeClass("hide-loader");
+      $("#environmentDiv").removeClass("hide-loader");
       var element = document.getElementById("loader");
       element.classList.remove("hide-loader");
 
       var element = document.getElementById("app-workers");
       element.classList.remove("hide-loader");
 
-      var piechartElement = document.getElementById("pie-chart");
-      piechartElement.classList.add("hide-loader");
-      var envSummaryElement = document.getElementById("env-summary");
-      envSummaryElement.classList.add("hide-loader");
-
       fetch(`/api/list-apps?Environment=${Environment}`)
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
-
           var t = "";
-
           for (var i = 0; i < data.details1.length; i++) {
-            mEnvironment=Environment;
-            console.log(mEnvironment)
+            mEnvironment = Environment;
+            console.log(mEnvironment);
             var tr = "<tr>";
             tr +=
               "<td style='text-align:center; vertical-align:middle'>" +
@@ -553,7 +364,6 @@
               "<td style='text-align:center; vertical-align:middle'>" +
               data.details1[i]["status"] +
               "</td>";
-            //tr += "<td style='text-align:center; vertical-align:middle'>"+data.details1[i]['workers']+"</td>";
             var dropdownId = "workersDropdown_" + i;
             tr +=
               "<td  style='text-align:center; vertical-align:middle; " +
@@ -586,10 +396,9 @@
               ">16</option>" +
               "</select>" +
               "</td>";
-            //tr += "<td style='text-align:center; vertical-align:middle'>"+data.details1[i]['worker-size']+"</td>";
             var dropdownIdofworkersize = "workerSizeDropdown_" + i;
             tr +=
-              "<td style='text-align:center; vertical-align:middle; font-weight: bold; color: black; " +
+              "<td style='text-align:center; vertical-align:middle; font-weight: bold; color: black; background-color:" +
               "'>" +
               "<select style='font-weight: bold; color: black;' id='" +
               dropdownIdofworkersize +
@@ -627,21 +436,28 @@
               data.details1[i]["mule-version"] +
               "</td>";
             tr +=
-              "<td style='text-align:center; vertical-align:middle'>" +
+              "<td class='parentCell' style='text-align:center; vertical-align:middle'>" +
               data.details1[i]["java-version"] +
+              "<span class='tooltip'>Tooltip</span>" +
               "</td>";
             var updatebutton = "updatebutton_" + i;
             tr +=
               "<td class='actions text-nowrap align-middle'>" +
-              "<button type='role' class='border-0 pointer edit-button bg-inherit' onclick='enableEdit(" +
+              "<button type='role' class='border-0 pointer edit-button custom-btn bg-inherit' onclick='enableEdit(" +
               i +
-              ")' ><i class='fa-solid fa-house'></i><i class='material-icons' color: #4682b4'>&#xE254;</i></button>" +
-              "<button type='button' class='border-0 pointer bg-inherit' disabled id='" +
+              ")' ><i class='material-icons' style='color: #4682b4'>&#xE254;</i></button>" +
+              "<button type='button' class='border-0 pointer custom-btn bg-inherit' disabled id='" +
               updatebutton +
               "'  onclick='updateWorkers(" +
               i +
               ")'><span class='material-icons' style='color: green'>check_circle</span></button>" +
-              "<button type='button' class='border-0 pointer show-metrics bg-inherit' id='sm' value='Show Metrics'  onclick='showMetrics(" + i + ", mEnvironment, document.getElementById(\"workerSizeDropdown_" + i + "\").value, document.getElementById(\"workersDropdown_" + i + "\").value)'><span class='material-icons' style='color: orange'>bar_chart</span></button>" +
+              "<button type='button' class='border-0 pointer custom-btn show-metrics bg-inherit' id='sm' value='Show Metrics'  onclick='showMetrics(" +
+              i +
+              ', mEnvironment, document.getElementById("workerSizeDropdown_' +
+              i +
+              '").value, document.getElementById("workersDropdown_' +
+              i +
+              "\").value)'><span class='material-icons' style='color: orange'>bar_chart</span></button>" +
               "</td>";
             tr += "</tr>";
             t += tr;
@@ -655,27 +471,14 @@
             }
           }
           const showMetricsButtons =
-            document.getElementsByClassName("show-metrics");
+          document.getElementsByClassName("show-metrics");
           for (let i = 0; i < editButtons.length; i++) {
             if (data.details1[i]["status"] === "UNDEPLOYED") {
               showMetricsButtons[i].disabled = true;
             }
           }
-          document.getElementById("totalOrgWorkers").innerHTML =
-            data["total-workers"]["totalOrgWorkers"];
-          document.getElementById("remainingOrgWorkers").innerHTML =
-            data["total-workers"]["remainingOrgWorkers"];
-          document.getElementById("totalUsedByThisEnv").innerHTML =
-            data["total-workers"]["totalUsedByThisEnv"];
-          document.getElementById("totalStaticIPsUsedByThisEnv").innerHTML =
-            data["total-workers"]["totalStaticIpsByThisEnv"];
-          document.getElementById("totalStartedAPIs").innerHTML =
-            data["total-workers"]["totalStartedAPIs"];
-          document.getElementById("totalUndeployedAPIs").innerHTML =
-            data["total-workers"]["totalUndeployedAPIs"];
+
           $("#loader").addClass("hide-loader");
-          //  document.getElementById('result').innerText = `Sum: ${data.sum}`;
-          // <label>"totalOrgWorkers" + data.total-workers['totalOrgWorkers']</label>;
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -703,12 +506,10 @@
       }
     }
     function updateWorkers(index) {
+      var element = document.getElementById("loader");
+      element.classList.remove("hide-loader");
       document.getElementById("loading-overlay").style.display = "block";
 
-      var spinner = new Spinner().spin(document.getElementById("loading"));
-
-      document.getElementById("loading").style.display = "block";
-      // Generate the unique ID for the dropdown in the specified row
       var dropdownId = "workersDropdown_" + index;
       var editedValue = document.getElementById(dropdownId).value;
       var dropdownIdofworkersize = "workerSizeDropdown_" + index;
@@ -718,9 +519,7 @@
       var appname = "app-nameid_" + index;
       var applicationName = document.getElementById(appname).innerText;
       var Environ = document.getElementById("Environment").value;
-      //var appName1 = data.details1[index]['app-name'];
-      // Use the edited value as needed (e.g., send it to example.com)
-      // Example using fetch:
+      
       enableEdit(index);
       fetch("/api/update-workers", {
         method: "POST",
@@ -737,75 +536,54 @@
         .then((response) => response.json())
         .then((response) => {
           document.getElementById("loading-overlay").style.display = "none";
-
-          spinner.stop();
-          document.getElementById("loading").style.display = "none";
+          $("#loader").addClass("hide-loader");
           if (!response.ok) {
-            //console.log(response);
-            // If the response status is not okay (e.g., 404 or 500), throw an error
             throw new Error(`HTTP error! Status: ${response.message}`);
           } else {
             alert("API Response: " + response.Message);
           }
-          // Parse the JSON response
-          // return response.json();
-        })
-        .then((data) => {
-          // Display the API response in a pop-up
-          //alert('API Response: ' + JSON.stringify(data));
         })
         .catch((error) => {
           document.getElementById("loading-overlay").style.display = "none";
-
-          spinner.stop();
-          document.getElementById("loading").style.display = "none";
-          // Display the error message in a pop-up
-          //console.error('Error:', error.message);
+          $("#loader").addClass("hide-loader");
           alert("Error: " + error.message);
         });
-
-      // .catch(error => {alert('Error: ' + error);console.error('Error:', error)});
     }
   </script>
   <div id="chartsContainer"></div>
   <script>
-    function showMetrics(index,mEnvironment) {
+    function showMetrics(index, mEnvironment) {
       var chartsContainer = document.getElementById("chartsContainer");
       chartsContainer.innerHTML = ""; // Clear existing charts
 
       var appname = "app-nameid_" + index;
       var applicationName = document.getElementById(appname).innerText;
-      var Environ = mEnvironment;//document.getElementById("Environment").value;
+      var Environ = mEnvironment;
 
       var workersIndex = "workersDropdown_" + index;
-      var workerSize= document.getElementById(workersIndex)?.value;
-      var workerSizeValue=0;
+      var workerSize = document.getElementById(workersIndex)?.value;
+      var workerSizeValue = 0;
       if (workerSize === "MICRO") {
-  workerSizeValue = 0.1;
-} else if (workerSize === "SMALL") {
-  workerSizeValue = 0.2;
-} 
-else if (workerSize === "MEDIUM") {
-  workerSizeValue = 1;
-} 
-else if (workerSize === "LARGE") {
-  workerSizeValue = 2;
-} 
-else if (workerSize === "XLARGE") {
-  workerSizeValue = 4; 
-} 
-else if (workerSize === "XXLARGE") {
-  workerSizeValue = 8;
-} 
-else if (workerSize === "4XLARGE") {
-  workerSizeValue = 16
-} 
-else {
-  // Handle cases for other workerSize values if needed
-  workerSizeValue = 0; // Default or fallback value if necessary
-}
+        workerSizeValue = 0.1;
+      } else if (workerSize === "SMALL") {
+        workerSizeValue = 0.2;
+      } else if (workerSize === "MEDIUM") {
+        workerSizeValue = 1;
+      } else if (workerSize === "LARGE") {
+        workerSizeValue = 2;
+      } else if (workerSize === "XLARGE") {
+        workerSizeValue = 4;
+      } else if (workerSize === "XXLARGE") {
+        workerSizeValue = 8;
+      } else if (workerSize === "4XLARGE") {
+        workerSizeValue = 16;
+      } else {
+        workerSizeValue = 0; // Default or fallback value if necessary
+      }
       var workerSizeIndex = "workerSizeDropdown_" + index;
-      var workers= document.getElementById(workerSizeIndex)?.value;
+      var workers = document.getElementById(workerSizeIndex)?.value;
+
+      document.getElementById("loading-overlay").style.display = "block";
 
       var element = document.getElementById("loader");
       element.classList.remove("hide-loader");
@@ -820,69 +598,80 @@ else {
           applicationName: applicationName,
           workerSize: workerSize,
           workers: workers,
-          workerSizeValue: workerSizeValue
+          workerSizeValue: workerSizeValue,
         }),
-        /* body: JSON.stringify({  "Environ": "439b821d-97bc-4858-8423-faf2d93310c5",
-       "applicationName": "exp-abcamit-commerce-dev7" }),*/
       })
         .then((response) => response.json())
         .then((data) => {
           var element = document.getElementById("loader");
           element.classList.add("hide-loader");
+          document.getElementById("loading-overlay").style.display = "none";
           // Create a modal for displaying line charts
           var modal = document.createElement("div");
           modal.className = "modal";
           modal.id = "metricsModal";
+          modal.style.border = "5px solid #D4BEE4";
+          modal.style.backgroundColor = "#FFFFFF";
 
           // Append the modal to the body
           document.body.appendChild(modal);
 
           // Create a close button for the modal
           var closeButton = document.createElement("span");
-          closeButton.innerHTML = "&times;";
-          closeButton.className = "close";
+          closeButton.innerHTML = "highlight_off";
+          closeButton.className = "material-icons close";
+          closeButton.style.color = "#EA3323";
+          closeButton.style.fontSize = "2rem";
+          closeButton.style.fontWeight = "700 !important";
+
           closeButton.onclick = function () {
-            modal.style.display = "none";
-            modal.innerHTML = ""; // Clear the content when closed
+            modal.remove();
           };
 
           // Append the close button to the modal
           modal.appendChild(closeButton);
 
-          var headButton = document.createElement("h2");
+          var headButton = document.createElement("h1");
           headButton.innerHTML = "Application: " + applicationName;
           headButton.className = "popup-header text-center";
           modal.appendChild(headButton);
+
+          createAISuggestionsTable(modal, data["AI-Suggestions"]);
+
           // Create a container for charts inside the modal
           var chartsContainer = document.createElement("div");
           chartsContainer.id = "modalChartsContainer";
+          chartsContainer.style.margin = "20px";
+          chartsContainer.style.border = "2px solid #F5EFFF";
+          chartsContainer.style.borderRadius = "5px";
+          chartsContainer.style.padding = "15px";
+          chartsContainer.style.backgroundColor = "#F5EFFF";
           modal.appendChild(chartsContainer);
 
-          createChart(chartsContainer, "Event Data", data.events?.events);
+          createChart(chartsContainer, "Event Data", data.events.events);
 
-          // Chart 2
           createMultiLineChart(
             chartsContainer,
             "Memory Total Used",
             data.memory,
             100,
             "memoryPercentageUsed"
-          ); // Pass the y-axis maximum value
+          ); 
 
-          // Chart 3
           createMultiLineChart(
             chartsContainer,
             "CPU Used",
             data.cpu,
             100,
             "cpu"
-          ); // Pass the y-axis maximum value
+          );
           modal.style.display = "block";
 
           function createChart(container, label, data, yAxisMax) {
             var chartCanvas = document.createElement("canvas");
-            chartCanvas.width = 1200; // Adjust the width as needed
-            chartCanvas.height = 400; // Adjust the height as needed
+            chartCanvas.width = 1500;
+            chartCanvas.height = 400;
+            chartCanvas.marginBottom = "20px";
             container.appendChild(chartCanvas);
 
             var ctx = chartCanvas.getContext("2d");
@@ -910,7 +699,7 @@ else {
                   radius: 1,
                 },
               },
-              responsive: false, // Set to false to ensure fixed size
+              responsive: false,
               maintainAspectRatio: false,
               scales: {
                 x: {
@@ -934,7 +723,7 @@ else {
                     offset: false,
                   },
                   min: 0,
-                  max: yAxisMax, // Set the maximum y-axis value
+                  max: yAxisMax,
                   beginAtZero: true,
                 },
               },
@@ -955,16 +744,15 @@ else {
             statType
           ) {
             var chartCanvas = document.createElement("canvas");
-            chartCanvas.width = 1200; // Adjust the width as needed
-            chartCanvas.height = 400; // Adjust the height as needed
+            chartCanvas.width = 1500;
+            chartCanvas.height = 400;
+            chartCanvas.marginBottom = "20px";
             container.appendChild(chartCanvas);
 
             var ctx = chartCanvas.getContext("2d");
 
-            // Extract unique IDs
             var uniqueIds = [...new Set(data.map((item) => item.id))];
 
-            // Prepare datasets for each ID
             var datasets = uniqueIds.map((id) => {
               var idData = data.find((item) => item.id === id);
               var idLabel = label + " (" + id + ")";
@@ -985,8 +773,8 @@ else {
             var chartData = {
               labels: Object.keys(
                 statType == "cpu"
-                  ? data[0].statistics.cpu
-                  : data[0].statistics.memoryPercentageUsed
+                  ? data[0]?.statistics?.cpu
+                  : data[0]?.statistics?.memoryPercentageUsed
               ).map(function (timestamp) {
                 return moment(parseInt(timestamp)).format(
                   "YYYY-MM-DD HH:mm:ss"
@@ -1001,7 +789,7 @@ else {
                   radius: 1,
                 },
               },
-              responsive: false, // Set to false to ensure fixed size
+              responsive: false, 
               maintainAspectRatio: false,
               scales: {
                 x: {
@@ -1025,7 +813,7 @@ else {
                     offset: false,
                   },
                   min: 0,
-                  max: yAxisMax, // Set the maximum y-axis value
+                  max: yAxisMax, 
                   beginAtZero: true,
                 },
               },
@@ -1052,95 +840,100 @@ else {
           console.error("Error:", error);
         });
     }
-  </script>
-  <script>
-    function sortTable(n) {}
-    function sortTable1(n) {
-      var table,
-        rows,
-        switching,
-        i,
-        x,
-        y,
-        shouldSwitch,
-        dir,
-        switchcount = 0;
-      table = document.getElementById("app-details");
-      switching = true;
-      // Set the sorting direction to ascending:
-      dir = "asc";
-      /* Make a loop that will continue until
-    no switching has been done: */
-      while (switching) {
-        // Start by saying: no switching is done:
-        switching = false;
-        rows = table.rows;
-        /* Loop through all table rows (except the
-      first, which contains table headers): */
-        //console.log(rows.length)
-        for (i = 1; i < rows.length - 1; i++) {
-          // Start by saying there should be no switching:
-          shouldSwitch = false;
-          /* Get the two elements you want to compare,
-        one from current row and one from the next: */
-          x = rows[i].getElementsByTagName("TD")[n];
-          y = rows[i + 1].getElementsByTagName("TD")[n];
 
-          /* Check if the two rows should switch place,
-        based on the direction, asc or desc: */
-          if (dir == "asc") {
-            if (n == 0 || n == 3 || n == 4) {
-              if (Number(x.innerHTML) > Number(y.innerHTML)) {
-                shouldSwitch = true;
-                break;
-              }
-            } else if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          } else if (dir == "desc") {
-            if (n == 0 || n == 3 || n == 4) {
-              if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                shouldSwitch = true;
-                break;
-              }
-            } else if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-              // If so, mark as a switch and break the loop:
-              shouldSwitch = true;
-              break;
-            }
-          }
-        }
-        if (shouldSwitch) {
-          /* If a switch has been marked, make the switch
-        and mark that a switch has been done: */
-          rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-          switching = true;
-          // Each time a switch is done, increase this count by 1:
-          switchcount++;
-        } else {
-          /* If no switching has been done AND the direction is "asc",
-        set the direction to "desc" and run the while loop again. */
-          if (switchcount == 0 && dir == "asc") {
-            dir = "desc";
-            switching = true;
-          }
-        }
-      }
+    function createAISuggestionsTable(modal, aiSuggestions) {
+      const {
+        "AI-Suggested-WorkerSize": suggestedWorkerSize,
+        "AI-Suggested-Workers": suggestedWorkers,
+        analysisOfDataset,
+        justification,
+      } = aiSuggestions;
+
+      const tableContainer = document.createElement("div");
+
+      const title = document.createElement("h4");
+      title.innerHTML = "AI Suggestions and Analysis";
+      title.style.textAlign = "center";
+      title.style.marginBottom = "15px";
+      title.style.color = "#2c3e50";
+      title.style.fontWeight = "bold";
+      tableContainer.appendChild(title);
+
+      const table = document.createElement("table");
+      table.style.width = "50%";
+      table.style.borderCollapse = "collapse";
+      table.style.fontSize = "14px";
+      table.style.marginLeft = "25%";
+
+      const createTableRow = (label, value) => {
+        const row = document.createElement("tr");
+        row.style.backgroundColor = "#fff !important";
+
+        const labelCell = document.createElement("td");
+        labelCell.style.padding = "10px";
+        labelCell.style.border = "1px solid #ddd";
+        labelCell.style.fontWeight = "bold";
+        labelCell.style.color = "#333";
+        labelCell.style.textAlign = "left";
+        labelCell.style.whiteSpace = "nowrap";
+        labelCell.style.backgroundColor = "#CDC1FF";
+
+        labelCell.innerHTML = label;
+
+        const valueCell = document.createElement("td");
+        valueCell.style.padding = "10px";
+        valueCell.style.border = "1px solid #ddd";
+        valueCell.style.fontWeight = "bold";
+        valueCell.style.color = "#333";
+        valueCell.style.textAlign = "left";
+        valueCell.innerHTML = value;
+        valueCell.style.backgroundColor = "#CDC1FF";
+
+        row.appendChild(labelCell);
+        row.appendChild(valueCell);
+
+        return row;
+      };
+
+      // Append rows for AI suggestions
+      table.appendChild(
+        createTableRow("AI Suggested Worker Size", suggestedWorkerSize)
+      );
+      table.appendChild(
+        createTableRow("AI Suggested Workers", suggestedWorkers)
+      );
+      table.appendChild(createTableRow("Justification", justification));
+
+      // Combine average and max values into single rows
+      table.appendChild(
+        createTableRow(
+          "CPU Usage (%)",
+          `Max: ${analysisOfDataset.maxCpuUsagePercentage.toFixed(
+            2
+          )}, Avg: ${analysisOfDataset.avgCpuUsagePercentage.toFixed(2)}`
+        )
+      );
+      table.appendChild(
+        createTableRow(
+          "Memory Usage (%)",
+          `Max: ${analysisOfDataset.maxMemoryUsagePercentage.toFixed(
+            2
+          )}, Avg: ${analysisOfDataset.avgMemoryUsagePercentage.toFixed(2)}`
+        )
+      );
+
+      tableContainer.appendChild(table);
+      modal.appendChild(tableContainer);
     }
   </script>
   <script type="text/javascript">
     function loadEnvironments() {
-      //Hide Env summary
-      $("#env-summary").addClass("hide-loader");
       $("#loader").addClass("hide-loader");
-      $("#pie-chart").addClass("hide-loader");
       fetch("/api/list-environments")
         .then((response) => response.json())
         .then((data) => {
           const environmentDropdown = document.getElementById("Environment");
-          environmentDropdown.innerHTML = ""; // Clear existing options
+          environmentDropdown.innerHTML = "";
           // Populate dropdown with fetched environments
           data.environments.forEach((environment) => {
             const option = document.createElement("option");
