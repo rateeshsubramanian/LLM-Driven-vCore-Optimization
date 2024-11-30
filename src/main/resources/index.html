@@ -47,41 +47,9 @@
         padding-right: 10px;
       }
 
-      #sidebar {
-        width: 20%;
-        padding: 20px;
-        color: #fff;
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0;
-        height: 100vh;
-        background-color: #003580;
-      }
-
-      #main-content {
-        width: 80%;
-        padding: 20px;
-        background-color: #fff;
-      }
-
       h1,
       h2 {
         color: #333;
-      }
-
-      ul {
-        list-style-type: none;
-        padding: 0;
-      }
-
-      li {
-        margin-bottom: 10px;
-      }
-
-      a {
-        text-decoration: none;
-        color: #fff;
-        font-weight: bold;
       }
 
       canvas {
@@ -89,10 +57,6 @@
         height: 100%;
         max-width: none;
         max-height: none;
-      }
-
-      #result {
-        margin-top: 20px;
       }
 
       table {
@@ -120,20 +84,20 @@
       .loader {
         width: 70px;
         height: 70px;
-        border: 5px solid #C68FE6;
+        border: 5px solid #c68fe6;
         border-radius: 50%;
         margin: auto;
         position: fixed;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -50%); /* Center the loader */
+        transform: translate(-50%, -50%);
         animation: rotation 1s linear infinite;
       }
 
       .loader::after {
         content: "";
         box-sizing: border-box;
-        position: absolute; /* Change position to absolute */
+        position: absolute;
         left: 50%;
         top: 0;
         background: #2c2a96;
@@ -155,51 +119,18 @@
         display: none !important;
       }
 
-      .worker-filter {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        width: 35%;
-        border-radius: 5px;
-        background-color: #dddd;
-        border-radius: 5px;
-        margin-right: 5%;
-        padding: 10px;
-      }
-
       #filters-container {
-        background-color: #C68FE6;
+        background-color: #c68fe6;
         border-radius: 5px;
         padding: 10px;
-      }
-
-      #sumForm {
-        margin-top: 5%;
-        margin-left: 10px;
-        width: 70%;
-      }
-
-      .info-parent {
-        margin-left: 5%;
-      }
-
-      .count {
-        font-weight: bold;
-        float: right;
-        margin-left: 5%;
       }
 
       #app-details tr:nth-child(even) {
-        background-color: #F5EFFF !important;
+        background-color: #f5efff !important;
       }
 
       #app-details tr:nth-child(odd) {
         background-color: #fff !important;
-      }
-      
-
-      #myPieChart {
-        height: 800px !important;
-        width: 800px !important;
       }
 
       #loading-overlay {
@@ -225,50 +156,19 @@
         z-index: 10000;
       }
 
-      .total-row {
-        background-color: #7e6969;
-        font-weight: bold;
-      }
-
-      #api-table {
-        border-collapse: collapse;
-        width: 100%;
-      }
-
       .table-th {
-        /* position: sticky;*/
         text-align: center;
         top: 0;
         z-index: 2;
-        background-color: #6C48C5;
-        justify-content: center; /* Horizontal centering */
-        align-items: center; /* Vertical centering */
-      }
-
-      #api-table th {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        text-align: center;
-        background-color: #4682b4 !important;
-        justify-content: center; /* Horizontal centering */
-        align-items: center; /* Vertical centering */
-      }
-
-      #app-details th {
-        /* position: sticky;*/
-        top: 0;
-        z-index: 2;
-        background-color: #6C48C5;
-        text-align: center;
-        justify-content: center; /* Horizontal centering */
-        align-items: center; /* Vertical centering */
+        background-color: #6c48c5;
+        justify-content: center; 
+        align-items: center;
       }
 
       .popup-header {
         text-align: right;
         margin-bottom: 2%;
-        color: #9B7EBD;
+        color: #9b7ebd;
       }
 
       .pointer {
@@ -285,22 +185,8 @@
         border-color: #433878;
       }
 
-      /*   .custom-dropdown {
-        background-color: #4682b4 !important;
-        border-color: #4682b4 !important;
-      }
-
-      .custom-dropdown:hover {
-        background-color: #4682b4 !important;
-        border-color: #4682b4 !important;
-      } */
-
       .custom-dropdown:focus {
         outline: 0 !important;
-      }
-
-      .info-label {
-        margin-bottom: 0px !important;
       }
 
       div.buttons {
@@ -319,34 +205,34 @@
         padding-left: 40px;
       }
       button {
-  outline: none !important; /* Removes the focus border */
-  box-shadow: none !important; /* Removes the shadow */
-}
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-button:focus {
-  outline: none !important; /* Ensures focus outline doesn't appear */
-  box-shadow: none !important; /* Removes shadow on focus */
-}
+      button:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-button:active {
-  outline: none !important; /* Removes outline when button is clicked */
-  box-shadow: none !important; /* Removes shadow when button is clicked */
-}
+      button:active {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-select {
-  outline: none !important; /* Removes the focus border */
-  box-shadow: none !important; /* Removes the shadow */
-}
+      select {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-select:focus {
-  outline: none !important; /* Ensures focus outline doesn't appear */
-  box-shadow: none !important; /* Removes shadow on focus */
-}
+      select:focus {
+        outline: none !important;
+        box-shadow: none !important;
+      }
 
-select:active {
-  outline: none !important; /* Removes outline when button is clicked */
-  box-shadow: none !important; /* Removes shadow when button is clicked */
-}
+      select:active {
+        outline: none !important;
+        box-shadow: none !important;
+      }
     </style>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -389,11 +275,10 @@ select:active {
 
   <body>
     <div id="dashboard-container">
-
       <div id="app-workers">
         <div style="width: 100%; padding: 10px">
           <div class="ml-1 mb-2 mt-2" id="filters-container">
-            <div id="EnvironmentDiv">
+            <div id="environmentDiv">
               <label class="mr-2" for="Environment">Environment</label>
               <select
                 class="dropdown btn dropdown-toggle btn-sm custom-dropdown mr-2"
@@ -413,7 +298,6 @@ select:active {
           <div
             class="table-wrapper-scroll-y my-custom-scrollbar ml-1 table-responsive"
           >
-         
             <table
               class="table table-striped table-bordered table-sm"
               cellspacing="0"
@@ -462,7 +346,7 @@ select:active {
     function retriveWorkers() {
       const Environment = document.getElementById("Environment").value;
       $("#app-details tbody tr").remove();
-      $("#EnvironmentDiv").removeClass("hide-loader");
+      $("#environmentDiv").removeClass("hide-loader");
       var element = document.getElementById("loader");
       element.classList.remove("hide-loader");
 
@@ -472,10 +356,7 @@ select:active {
       fetch(`/api/list-apps?Environment=${Environment}`)
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
-
           var t = "";
-
           for (var i = 0; i < data.details1.length; i++) {
             mEnvironment = Environment;
             console.log(mEnvironment);
@@ -495,7 +376,6 @@ select:active {
               "<td style='text-align:center; vertical-align:middle'>" +
               data.details1[i]["status"] +
               "</td>";
-            //tr += "<td style='text-align:center; vertical-align:middle'>"+data.details1[i]['workers']+"</td>";
             var dropdownId = "workersDropdown_" + i;
             tr +=
               "<td  style='text-align:center; vertical-align:middle; " +
@@ -528,7 +408,6 @@ select:active {
               ">16</option>" +
               "</select>" +
               "</td>";
-            //tr += "<td style='text-align:center; vertical-align:middle'>"+data.details1[i]['worker-size']+"</td>";
             var dropdownIdofworkersize = "workerSizeDropdown_" + i;
             tr +=
               "<td style='text-align:center; vertical-align:middle; font-weight: bold; color: black; background-color:" +
@@ -610,10 +489,8 @@ select:active {
               showMetricsButtons[i].disabled = true;
             }
           }
-        
+
           $("#loader").addClass("hide-loader");
-          //  document.getElementById('result').innerText = `Sum: ${data.sum}`;
-          // <label>"totalOrgWorkers" + data.total-workers['totalOrgWorkers']</label>;
         })
         .catch((error) => {
           console.error("Error:", error);
@@ -656,9 +533,7 @@ select:active {
       var appname = "app-nameid_" + index;
       var applicationName = document.getElementById(appname).innerText;
       var Environ = document.getElementById("Environment").value;
-      //var appName1 = data.details1[index]['app-name'];
-      // Use the edited value as needed (e.g., send it to example.com)
-      // Example using fetch:
+      
       enableEdit(index);
       fetch("/api/update-workers", {
         method: "POST",
@@ -679,8 +554,6 @@ select:active {
           spinner.stop();
           document.getElementById("loading").style.display = "none";
           if (!response.ok) {
-            //console.log(response);
-            // If the response status is not okay (e.g., 404 or 500), throw an error
             throw new Error(`HTTP error! Status: ${response.message}`);
           } else {
             alert("API Response: " + response.Message);
@@ -697,323 +570,312 @@ select:active {
 
           spinner.stop();
           document.getElementById("loading").style.display = "none";
-          // Display the error message in a pop-up
-          //console.error('Error:', error.message);
           alert("Error: " + error.message);
         });
-
-      // .catch(error => {alert('Error: ' + error);console.error('Error:', error)});
     }
   </script>
   <div id="chartsContainer"></div>
   <script>
-        function showMetrics(index,mEnvironment) {
-          var chartsContainer = document.getElementById("chartsContainer");
-          chartsContainer.innerHTML = ""; // Clear existing charts
+    function showMetrics(index, mEnvironment) {
+      var chartsContainer = document.getElementById("chartsContainer");
+      chartsContainer.innerHTML = ""; // Clear existing charts
 
-          var appname = "app-nameid_" + index;
-          var applicationName = document.getElementById(appname).innerText;
-          var Environ = mEnvironment;//document.getElementById("Environment").value;
+      var appname = "app-nameid_" + index;
+      var applicationName = document.getElementById(appname).innerText;
+      var Environ = mEnvironment; //document.getElementById("Environment").value;
 
-          var workersIndex = "workersDropdown_" + index;
-          var workerSize= document.getElementById(workersIndex)?.value;
-          var workerSizeValue=0;
-          if (workerSize === "MICRO") {
-      workerSizeValue = 0.1;
-    } else if (workerSize === "SMALL") {
-      workerSizeValue = 0.2;
-    }
-    else if (workerSize === "MEDIUM") {
-      workerSizeValue = 1;
-    }
-    else if (workerSize === "LARGE") {
-      workerSizeValue = 2;
-    }
-    else if (workerSize === "XLARGE") {
-      workerSizeValue = 4;
-    }
-    else if (workerSize === "XXLARGE") {
-      workerSizeValue = 8;
-    }
-    else if (workerSize === "4XLARGE") {
-      workerSizeValue = 16
-    }
-    else {
-      // Handle cases for other workerSize values if needed
-      workerSizeValue = 0; // Default or fallback value if necessary
-    }
-          var workerSizeIndex = "workerSizeDropdown_" + index;
-          var workers= document.getElementById(workerSizeIndex)?.value;
+      var workersIndex = "workersDropdown_" + index;
+      var workerSize = document.getElementById(workersIndex)?.value;
+      var workerSizeValue = 0;
+      if (workerSize === "MICRO") {
+        workerSizeValue = 0.1;
+      } else if (workerSize === "SMALL") {
+        workerSizeValue = 0.2;
+      } else if (workerSize === "MEDIUM") {
+        workerSizeValue = 1;
+      } else if (workerSize === "LARGE") {
+        workerSizeValue = 2;
+      } else if (workerSize === "XLARGE") {
+        workerSizeValue = 4;
+      } else if (workerSize === "XXLARGE") {
+        workerSizeValue = 8;
+      } else if (workerSize === "4XLARGE") {
+        workerSizeValue = 16;
+      } else {
+        // Handle cases for other workerSize values if needed
+        workerSizeValue = 0; // Default or fallback value if necessary
+      }
+      var workerSizeIndex = "workerSizeDropdown_" + index;
+      var workers = document.getElementById(workerSizeIndex)?.value;
 
+      var element = document.getElementById("loader");
+      element.classList.remove("hide-loader");
+
+      fetch("/api/show-metrics", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          Environ: Environ,
+          applicationName: applicationName,
+          workerSize: workerSize,
+          workers: workers,
+          workerSizeValue: workerSizeValue,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
           var element = document.getElementById("loader");
-          element.classList.remove("hide-loader");
+          element.classList.add("hide-loader");
+          // Create a modal for displaying line charts
+          var modal = document.createElement("div");
+          modal.className = "modal";
+          modal.id = "metricsModal";
+          modal.style.border = "5px solid #D4BEE4";
+          modal.style.backgroundColor = "#FFFFFF";
 
-          fetch("/api/show-metrics", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              Environ: Environ,
-              applicationName: applicationName,
-              workerSize: workerSize,
-              workers: workers,
-              workerSizeValue: workerSizeValue
-            }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              var element = document.getElementById("loader");
-              element.classList.add("hide-loader");
-              // Create a modal for displaying line charts
-              var modal = document.createElement("div");
-              modal.className = "modal";
-              modal.id = "metricsModal";
-              modal.style.border = "5px solid #D4BEE4";
-              modal.style.backgroundColor = "#FFFFFF";
+          // Append the modal to the body
+          document.body.appendChild(modal);
 
-              // Append the modal to the body
-              document.body.appendChild(modal);
+          // Create a close button for the modal
+          var closeButton = document.createElement("span");
+          closeButton.innerHTML = "highlight_off";
+          closeButton.className = "material-icons close";
+          closeButton.style.color = "#EA3323";
+          closeButton.style.fontSize = "2rem";
+          closeButton.style.fontWeight = "700 !important";
 
-              // Create a close button for the modal
-              var closeButton = document.createElement("span");
-              closeButton.innerHTML = "highlight_off";
-              closeButton.className = "material-icons close";
-              closeButton.style.color = "#EA3323";
-              closeButton.style.fontSize = "2rem";
-              closeButton.style.fontWeight = "700 !important";
+          closeButton.onclick = function () {
+            //modal.style.display = "none";
+            //modal.innerHTML = ""; // Clear the content when closed
+            modal.remove();
+          };
 
-              closeButton.onclick = function () {
-                //modal.style.display = "none";
-                //modal.innerHTML = ""; // Clear the content when closed
-                modal.remove();
-              };
+          // Append the close button to the modal
+          modal.appendChild(closeButton);
 
-              // Append the close button to the modal
-              modal.appendChild(closeButton);
+          var headButton = document.createElement("h1");
+          headButton.innerHTML = "Application: " + applicationName;
+          headButton.className = "popup-header text-center";
+          modal.appendChild(headButton);
 
-              var headButton = document.createElement("h1");
-              headButton.innerHTML = "Application: " + applicationName;
-              headButton.className = "popup-header text-center";
-              modal.appendChild(headButton);
+          createAISuggestionsTable(modal, data["AI-Suggestions"]);
 
-              createAISuggestionsTable(modal, data['AI-Suggestions']);
+          // Create a container for charts inside the modal
+          var chartsContainer = document.createElement("div");
+          chartsContainer.id = "modalChartsContainer";
+          chartsContainer.style.margin = "20px";
+          chartsContainer.style.border = "2px solid #F5EFFF";
+          chartsContainer.style.borderRadius = "5px";
+          chartsContainer.style.padding = "15px";
+          chartsContainer.style.backgroundColor = "#F5EFFF";
+          modal.appendChild(chartsContainer);
 
+          createChart(chartsContainer, "Event Data", data.events.events);
 
-              // Create a container for charts inside the modal
-              var chartsContainer = document.createElement("div");
-              chartsContainer.id = "modalChartsContainer";
-              chartsContainer.style.margin = "20px";
-              chartsContainer.style.border = "2px solid #F5EFFF";
-              chartsContainer.style.borderRadius = "5px";
-              chartsContainer.style.padding = "15px";
-              chartsContainer.style.backgroundColor = "#F5EFFF";
-              modal.appendChild(chartsContainer);
+          // Chart 2
+          createMultiLineChart(
+            chartsContainer,
+            "Memory Total Used",
+            data.memory,
+            100,
+            "memoryPercentageUsed"
+          ); // Pass the y-axis maximum value
 
-              createChart(chartsContainer, "Event Data", data.events.events);
+          // Chart 3
+          createMultiLineChart(
+            chartsContainer,
+            "CPU Used",
+            data.cpu,
+            100,
+            "cpu"
+          ); // Pass the y-axis maximum value
+          modal.style.display = "block";
 
-              // Chart 2
-              createMultiLineChart(
-                chartsContainer,
-                "Memory Total Used",
-                data.memory,
-                100,
-                "memoryPercentageUsed"
-              ); // Pass the y-axis maximum value
+          function createChart(container, label, data, yAxisMax) {
+            var chartCanvas = document.createElement("canvas");
+            chartCanvas.width = 1500; // Adjust the width as needed
+            chartCanvas.height = 400; // Adjust the height as needed
+            chartCanvas.marginBottom = "20px";
+            container.appendChild(chartCanvas);
 
-              // Chart 3
-              createMultiLineChart(
-                chartsContainer,
-                "CPU Used",
-                data.cpu,
-                100,
-                "cpu"
-              ); // Pass the y-axis maximum value
-              modal.style.display = "block";
+            var ctx = chartCanvas.getContext("2d");
 
-              function createChart(container, label, data, yAxisMax) {
-                var chartCanvas = document.createElement("canvas");
-                chartCanvas.width = 1500; // Adjust the width as needed
-                chartCanvas.height = 400; // Adjust the height as needed
-                chartCanvas.marginBottom = "20px";
-                container.appendChild(chartCanvas);
-
-                var ctx = chartCanvas.getContext("2d");
-
-                var labels = Object.keys(data).map(function (timestamp) {
-                  return moment(parseInt(timestamp)).format("YYYY-MM-DD HH:mm:ss");
-                });
-
-                var chartData = {
-                  labels: labels,
-                  datasets: [
-                    {
-                      label: label,
-
-                      data: Object.values(data),
-                      fill: false,
-                      borderColor: "rgb(255, 99, 132)",
-                    },
-                  ],
-                };
-
-                var options = {
-                  elements: {
-                    point: {
-                      radius: 1,
-                    },
-                  },
-                  responsive: false, // Set to false to ensure fixed size
-                  maintainAspectRatio: false,
-                  scales: {
-                    x: {
-                      grid: {
-                        tickLength: 0,
-                        drawBorder: false,
-                        offset: false,
-                      },
-                      type: "time",
-                      time: {
-                        unit: "hour",
-                        displayFormats: {
-                          hour: "YYYY-MM-DD HH:mm",
-                        },
-                      },
-                    },
-                    y: {
-                      grid: {
-                        tickLength: 0,
-                        drawBorder: false,
-                        offset: false,
-                      },
-                      min: 0,
-                      max: yAxisMax, // Set the maximum y-axis value
-                      beginAtZero: true,
-                    },
-                  },
-                };
-
-                new Chart(ctx, {
-                  type: "line",
-                  data: chartData,
-                  options: options,
-                });
-              }
-
-              function createMultiLineChart(
-                container,
-                label,
-                data,
-                yAxisMax,
-                statType
-              ) {
-                var chartCanvas = document.createElement("canvas");
-                chartCanvas.width = 1500; // Adjust the width as needed
-                chartCanvas.height = 400; // Adjust the height as needed
-                chartCanvas.marginBottom = "20px";
-                container.appendChild(chartCanvas);
-
-                var ctx = chartCanvas.getContext("2d");
-
-                // Extract unique IDs
-                var uniqueIds = [...new Set(data.map((item) => item.id))];
-
-                // Prepare datasets for each ID
-                var datasets = uniqueIds.map((id) => {
-                  var idData = data.find((item) => item.id === id);
-                  var idLabel = label + " (" + id + ")";
-                  var idChartData =
-                    statType == "cpu"
-                      ? idData.statistics.cpu
-                      : idData.statistics.memoryPercentageUsed;
-                  var idValues = Object.values(idChartData);
-
-                  return {
-                    label: idLabel,
-                    borderColor: getRandomColor(),
-                    data: idValues,
-                    fill: false,
-                  };
-                });
-
-                var chartData = {
-                  labels: Object.keys(
-                    statType == "cpu"
-                      ? data[0].statistics.cpu
-                      : data[0].statistics.memoryPercentageUsed
-                  ).map(function (timestamp) {
-                    return moment(parseInt(timestamp)).format(
-                      "YYYY-MM-DD HH:mm:ss"
-                    );
-                  }),
-                  datasets: datasets,
-                };
-
-                var options = {
-                  elements: {
-                    point: {
-                      radius: 1,
-                    },
-                  },
-                  responsive: false, // Set to false to ensure fixed size
-                  maintainAspectRatio: false,
-                  scales: {
-                    x: {
-                      grid: {
-                        tickLength: 0,
-                        drawBorder: false,
-                        offset: false,
-                      },
-                      type: "time",
-                      time: {
-                        unit: "hour",
-                        displayFormats: {
-                          hour: "YYYY-MM-DD HH:mm",
-                        },
-                      },
-                    },
-                    y: {
-                      grid: {
-                        tickLength: 0,
-                        drawBorder: false,
-                        offset: false,
-                      },
-                      min: 0,
-                      max: yAxisMax, // Set the maximum y-axis value
-                      beginAtZero: true,
-                    },
-                  },
-                };
-
-                new Chart(ctx, {
-                  type: "line",
-                  data: chartData,
-                  options: options,
-                });
-              }
-
-              function getRandomColor() {
-                var letters = "0123456789ABCDEF";
-                var color = "#";
-                for (var i = 0; i < 6; i++) {
-                  color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-              }
-            })
-            .catch((error) => {
-              loader.style.display = "none";
-              console.error("Error:", error);
+            var labels = Object.keys(data).map(function (timestamp) {
+              return moment(parseInt(timestamp)).format("YYYY-MM-DD HH:mm:ss");
             });
-        }
-      // Function to create a container for AI suggestions
-      function createAISuggestionsTable(modal, aiSuggestions) {
+
+            var chartData = {
+              labels: labels,
+              datasets: [
+                {
+                  label: label,
+
+                  data: Object.values(data),
+                  fill: false,
+                  borderColor: "rgb(255, 99, 132)",
+                },
+              ],
+            };
+
+            var options = {
+              elements: {
+                point: {
+                  radius: 1,
+                },
+              },
+              responsive: false, // Set to false to ensure fixed size
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  grid: {
+                    tickLength: 0,
+                    drawBorder: false,
+                    offset: false,
+                  },
+                  type: "time",
+                  time: {
+                    unit: "hour",
+                    displayFormats: {
+                      hour: "YYYY-MM-DD HH:mm",
+                    },
+                  },
+                },
+                y: {
+                  grid: {
+                    tickLength: 0,
+                    drawBorder: false,
+                    offset: false,
+                  },
+                  min: 0,
+                  max: yAxisMax, // Set the maximum y-axis value
+                  beginAtZero: true,
+                },
+              },
+            };
+
+            new Chart(ctx, {
+              type: "line",
+              data: chartData,
+              options: options,
+            });
+          }
+
+          function createMultiLineChart(
+            container,
+            label,
+            data,
+            yAxisMax,
+            statType
+          ) {
+            var chartCanvas = document.createElement("canvas");
+            chartCanvas.width = 1500; // Adjust the width as needed
+            chartCanvas.height = 400; // Adjust the height as needed
+            chartCanvas.marginBottom = "20px";
+            container.appendChild(chartCanvas);
+
+            var ctx = chartCanvas.getContext("2d");
+
+            // Extract unique IDs
+            var uniqueIds = [...new Set(data.map((item) => item.id))];
+
+            // Prepare datasets for each ID
+            var datasets = uniqueIds.map((id) => {
+              var idData = data.find((item) => item.id === id);
+              var idLabel = label + " (" + id + ")";
+              var idChartData =
+                statType == "cpu"
+                  ? idData.statistics.cpu
+                  : idData.statistics.memoryPercentageUsed;
+              var idValues = Object.values(idChartData);
+
+              return {
+                label: idLabel,
+                borderColor: getRandomColor(),
+                data: idValues,
+                fill: false,
+              };
+            });
+
+            var chartData = {
+              labels: Object.keys(
+                statType == "cpu"
+                  ? data[0].statistics.cpu
+                  : data[0].statistics.memoryPercentageUsed
+              ).map(function (timestamp) {
+                return moment(parseInt(timestamp)).format(
+                  "YYYY-MM-DD HH:mm:ss"
+                );
+              }),
+              datasets: datasets,
+            };
+
+            var options = {
+              elements: {
+                point: {
+                  radius: 1,
+                },
+              },
+              responsive: false, // Set to false to ensure fixed size
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  grid: {
+                    tickLength: 0,
+                    drawBorder: false,
+                    offset: false,
+                  },
+                  type: "time",
+                  time: {
+                    unit: "hour",
+                    displayFormats: {
+                      hour: "YYYY-MM-DD HH:mm",
+                    },
+                  },
+                },
+                y: {
+                  grid: {
+                    tickLength: 0,
+                    drawBorder: false,
+                    offset: false,
+                  },
+                  min: 0,
+                  max: yAxisMax, // Set the maximum y-axis value
+                  beginAtZero: true,
+                },
+              },
+            };
+
+            new Chart(ctx, {
+              type: "line",
+              data: chartData,
+              options: options,
+            });
+          }
+
+          function getRandomColor() {
+            var letters = "0123456789ABCDEF";
+            var color = "#";
+            for (var i = 0; i < 6; i++) {
+              color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+          }
+        })
+        .catch((error) => {
+          loader.style.display = "none";
+          console.error("Error:", error);
+        });
+    }
+    // Function to create a container for AI suggestions
+    function createAISuggestionsTable(modal, aiSuggestions) {
       // Extract data from payload
       const {
-          "AI-Suggested-WorkerSize": suggestedWorkerSize,
-          "AI-Suggested-Workers": suggestedWorkers,
-          analysisOfDataset,
-          justification
+        "AI-Suggested-WorkerSize": suggestedWorkerSize,
+        "AI-Suggested-Workers": suggestedWorkers,
+        analysisOfDataset,
+        justification,
       } = aiSuggestions;
 
       // Create the table container
@@ -1041,61 +903,62 @@ select:active {
       table.style.fontSize = "14px";
       table.style.marginLeft = "25%";
 
-    // Helper to create a table row
-    const createTableRow = (label, value) => {
-      const row = document.createElement("tr");
-      row.style.backgroundColor = "#fff !important";
+      // Helper to create a table row
+      const createTableRow = (label, value) => {
+        const row = document.createElement("tr");
+        row.style.backgroundColor = "#fff !important";
 
-      const labelCell = document.createElement("td");
-      labelCell.style.padding = "10px";
-      labelCell.style.border = "1px solid #ddd";
-      labelCell.style.fontWeight = "bold";
-      labelCell.style.color = "#333";
-      labelCell.style.textAlign = "left";
-      labelCell.style.whiteSpace = "nowrap";
-      labelCell.style.backgroundColor = "#CDC1FF";
-      
+        const labelCell = document.createElement("td");
+        labelCell.style.padding = "10px";
+        labelCell.style.border = "1px solid #ddd";
+        labelCell.style.fontWeight = "bold";
+        labelCell.style.color = "#333";
+        labelCell.style.textAlign = "left";
+        labelCell.style.whiteSpace = "nowrap";
+        labelCell.style.backgroundColor = "#CDC1FF";
 
-      labelCell.innerHTML = label;
+        labelCell.innerHTML = label;
 
-      const valueCell = document.createElement("td");
-      valueCell.style.padding = "10px";
-      valueCell.style.border = "1px solid #ddd";
-      valueCell.style.fontWeight = "bold";
-      valueCell.style.color = "#333";
-      valueCell.style.textAlign = "left";
-      valueCell.innerHTML = value;
-      valueCell.style.backgroundColor = "#CDC1FF";
+        const valueCell = document.createElement("td");
+        valueCell.style.padding = "10px";
+        valueCell.style.border = "1px solid #ddd";
+        valueCell.style.fontWeight = "bold";
+        valueCell.style.color = "#333";
+        valueCell.style.textAlign = "left";
+        valueCell.innerHTML = value;
+        valueCell.style.backgroundColor = "#CDC1FF";
 
-      row.appendChild(labelCell);
-      row.appendChild(valueCell);
+        row.appendChild(labelCell);
+        row.appendChild(valueCell);
 
-      return row;
-    };
+        return row;
+      };
 
       // Append rows for AI suggestions
       table.appendChild(
-          createTableRow("AI Suggested Worker Size", suggestedWorkerSize)
+        createTableRow("AI Suggested Worker Size", suggestedWorkerSize)
       );
       table.appendChild(
-          createTableRow("AI Suggested Workers", suggestedWorkers)
+        createTableRow("AI Suggested Workers", suggestedWorkers)
       );
-      table.appendChild(
-          createTableRow("Justification", justification)
-      );
+      table.appendChild(createTableRow("Justification", justification));
 
       // Combine average and max values into single rows
       table.appendChild(
-          createTableRow(
-              "CPU Usage (%)",
-              `Max: ${analysisOfDataset.maxCpuUsagePercentage.toFixed(2)}, Avg: ${analysisOfDataset.avgCpuUsagePercentage.toFixed(2)}`
-          )
+        createTableRow(
+          "CPU Usage (%)",
+          `Max: ${analysisOfDataset.maxCpuUsagePercentage.toFixed(
+            2
+          )}, Avg: ${analysisOfDataset.avgCpuUsagePercentage.toFixed(2)}`
+        )
       );
       table.appendChild(
-          createTableRow(
-              "Memory Usage (%)",
-              `Max: ${analysisOfDataset.maxMemoryUsagePercentage.toFixed(2)}, Avg: ${analysisOfDataset.avgMemoryUsagePercentage.toFixed(2)}`
-          )
+        createTableRow(
+          "Memory Usage (%)",
+          `Max: ${analysisOfDataset.maxMemoryUsagePercentage.toFixed(
+            2
+          )}, Avg: ${analysisOfDataset.avgMemoryUsagePercentage.toFixed(2)}`
+        )
       );
 
       // Append the table to the container
