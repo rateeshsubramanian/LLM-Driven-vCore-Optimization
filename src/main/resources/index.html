@@ -36,12 +36,6 @@
         cursor: pointer;
       }
 
-      .download-btn {
-        float: right;
-        margin-top: 5px;
-        box-shadow: none;
-      }
-
       body {
         font-family: "Arial", sans-serif;
         margin: 0;
@@ -51,12 +45,6 @@
 
       #app-workers {
         padding-right: 10px;
-      }
-
-      #env-summary {
-        width: 80%;
-        padding-right: 12px;
-        padding-left: 12px;
       }
 
       #sidebar {
@@ -277,12 +265,6 @@
         align-items: center; /* Vertical centering */
       }
 
-      #env-summary-header {
-        text-align: center;
-        justify-content: center; /* Horizontal centering */
-        align-items: center; /* Vertical centering */
-      }
-
       .popup-header {
         text-align: right;
         margin-bottom: 2%;
@@ -471,17 +453,8 @@ select:active {
           </div>
         </div>
       </div>
-      <div>
-        <!-- <p>Distribution of vCores across all environments in Non Prod VPC</p> -->
-        <div id="pie-chart" style="width: 100%; margin: auto">
-          <h2 id="pie-header" class="popup-header"></h2>
-          <canvas id="myPieChart"></canvas>
-        </div>
-      </div>
-      <div id="env-summary"></div>
       <div class="loader" id="loader"></div>
     </div>
-    <div id="chartsContainer"></div>
     <div id="loading-overlay"></div>
     <div id="loading"></div>
   </body>
@@ -495,11 +468,6 @@ select:active {
 
       var element = document.getElementById("app-workers");
       element.classList.remove("hide-loader");
-
-      var piechartElement = document.getElementById("pie-chart");
-      piechartElement.classList.add("hide-loader");
-      var envSummaryElement = document.getElementById("env-summary");
-      envSummaryElement.classList.add("hide-loader");
 
       fetch(`/api/list-apps?Environment=${Environment}`)
         .then((response) => response.json())
@@ -1217,10 +1185,7 @@ select:active {
   </script>
   <script type="text/javascript">
     function loadEnvironments() {
-      //Hide Env summary
-      $("#env-summary").addClass("hide-loader");
       $("#loader").addClass("hide-loader");
-      $("#pie-chart").addClass("hide-loader");
       fetch("/api/list-environments")
         .then((response) => response.json())
         .then((data) => {
