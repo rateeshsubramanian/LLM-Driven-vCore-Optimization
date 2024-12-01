@@ -19,6 +19,7 @@ User can view the stats of the Mule application by clicking on stats icon ![Alt 
 
 Based on the AI recommendations user can update the workers by clicking on edit button ![Alt text](readme-assets\image.png) in Actions column which enables the worker selection fields, once the workers are updated user can then click update icon ![Alt text](readme-assets\image-2.png) in Actions column to update the workers in Cloudhub.
 
+
 Efficient vCore configuration is crucial for balancing performance and cost in any MuleSoft integration setup. With the help of MuleSoft's AI Chain Connectors, this utility simplifies the process by:
 
 ✅ Offering intelligent recommendations based on workloads.\
