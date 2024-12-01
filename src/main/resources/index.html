@@ -233,6 +233,9 @@
         outline: none !important;
         box-shadow: none !important;
       }
+      h3 {
+        font-size: 18px !important;
+      }
     </style>
 
     <meta charset="UTF-8" />
@@ -247,6 +250,7 @@
       type="text/javascript"
       src="https://www.gstatic.com/charts/loader.js"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown/dist/showdown.min.js"></script>
 
     <link
       rel="stylesheet"
@@ -636,6 +640,7 @@
           headButton.className = "popup-header text-center";
           modal.appendChild(headButton);
 
+
           createAISuggestionsTable(modal, data["AI-Suggestions"]);
 
           // Create a container for charts inside the modal
@@ -839,12 +844,12 @@
     }
 
     function createAISuggestionsTable(modal, aiSuggestions) {
-      const {
+    /*   const {
         "AI-Suggested-WorkerSize": suggestedWorkerSize,
         "AI-Suggested-Workers": suggestedWorkers,
         analysisOfDataset,
         justification,
-      } = aiSuggestions;
+      } = aiSuggestions; */
 
       const tableContainer = document.createElement("div");
 
@@ -856,6 +861,16 @@
       title.style.fontWeight = "bold";
       tableContainer.appendChild(title);
 
+      const converter = new showdown.Converter();
+      var aiText = document.createElement("div");
+      const html = converter.makeHtml(aiSuggestions);
+      aiText.innerHTML = html;
+      aiText.style.backgroundColor = "#CDC1FF";
+      aiText.style.width = "90%";
+      aiText.style.marginLeft = "5%";
+      aiText.style.padding = "15px";
+      tableContainer.appendChild(aiText);
+
       const table = document.createElement("table");
       table.style.width = "50%";
       table.style.borderCollapse = "collapse";
@@ -863,10 +878,10 @@
       table.style.marginLeft = "25%";
 
       const createTableRow = (label, value) => {
-        const row = document.createElement("tr");
+        const row = document.createElement("p");
         row.style.backgroundColor = "#fff !important";
 
-        const labelCell = document.createElement("td");
+/*         const labelCell = document.createElement("td");
         labelCell.style.padding = "10px";
         labelCell.style.border = "1px solid #ddd";
         labelCell.style.fontWeight = "bold";
@@ -875,9 +890,9 @@
         labelCell.style.whiteSpace = "nowrap";
         labelCell.style.backgroundColor = "#CDC1FF";
 
-        labelCell.innerHTML = label;
+        labelCell.innerHTML = label; */
 
-        const valueCell = document.createElement("td");
+        const valueCell = document.createElement("p");
         valueCell.style.padding = "10px";
         valueCell.style.border = "1px solid #ddd";
         valueCell.style.fontWeight = "bold";
@@ -886,17 +901,17 @@
         valueCell.innerHTML = value;
         valueCell.style.backgroundColor = "#CDC1FF";
 
-        row.appendChild(labelCell);
-        row.appendChild(valueCell);
+      //  row.appendChild(labelCell);
+      //  row.appendChild(valueCell);
 
-        return row;
+        return valueCell;
       };
 
       // Append rows for AI suggestions
-      table.appendChild(
-        createTableRow("AI Suggested Worker Size", suggestedWorkerSize)
-      );
-      table.appendChild(
+    /*   table.appendChild(
+        createTableRow("AI Suggestions", aiSuggestions)
+      ); */
+     /*  table.appendChild(
         createTableRow("AI Suggested Workers", suggestedWorkers)
       );
       table.appendChild(createTableRow("Justification", justification));
@@ -917,9 +932,9 @@
             2
           )}, Avg: ${analysisOfDataset.avgMemoryUsagePercentage.toFixed(2)}`
         )
-      );
+      ); */
 
-      tableContainer.appendChild(table);
+     // tableContainer.appendChild(createTableRow("AI Suggestions", aiSuggestions));
       modal.appendChild(tableContainer);
     }
   </script>
