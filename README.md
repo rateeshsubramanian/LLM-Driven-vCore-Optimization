@@ -6,26 +6,28 @@ Table of Contents
       * [Installation](#installation)
          * [Requirements](#requirements)
          * [Connected App](#connected-app)
-         * [Properties configurations](#properties-configurations)
+         * [Properties Configurations](#properties-configurations)
          * [LLM Configuration](#llm-configuration)
          * [Login User Setup](#login-user-setup)
       * [Considerations](#considerations)
       * [Final Notes](#final-notes)
 
 # LLM Based vCores Management and Optimization
-The **LLM Based vCores Management and Optimization utility** is a Mule application with a user interface which helps the user to efficiently manage the vCores of each application based on AI Suggestions. This utility will connect to your cloudhub organization and list the Environments and applications in each environment.
+The **LLM Based vCores Management and Optimization utility** is a Mule application with a User Interface which helps the user to efficiently manage the vCores of each application based on AI Suggestions. This utility will connect to your CloudHub Organization and list the Environments and Applications in each environment.
 
 User can view the stats of the Mule application by clicking on stats icon ![Alt text](readme-assets\image-1.png) in the 'Actions' column which show the statistics(Events, CPU and Memory) of last 5 days and also shows the AI Suggested worker and worker size based on the current CPU/Memory utilization.
 
-Based on the AI recommendations user can update the workers by clicking on edit button ![Alt text](readme-assets\image.png) in Actions column which enables the worker selection fields, once the workers are updated user can then click update icon ![Alt text](readme-assets\image-2.png) in Actions column to update the workers in Cloudhub.
+Based on the AI Recommendations user can update the workers by clicking on edit button ![Alt text](readme-assets\image.png) in Actions column which enables the worker selection fields, once the workers are updated, user can then click update icon ![Alt text](readme-assets\image-2.png) in Actions column to update the workers in CloudHub.
 
 
-Efficient vCore configuration is crucial for balancing performance and cost in any MuleSoft integration setup. With the help of MuleSoft's AI Chain Connectors, this utility simplifies the process by:
+Efficient vCore Configuration is crucial for balancing Performance and Cost in any MuleSoft Integration Setup. With the help of MuleSoft's AI Chain Connectors, this utility simplifies the process by:
 
-✅ Offering intelligent recommendations based on workloads.\
+✅ Offering Intelligent Recommendations based on workloads.\
 ✅ Enhancing decision-making with predictive insights.\
 ✅ Reducing manual effort and potential errors.\
 ✅ Ability to update the worker setup of application directly from the UI based on AI recommendations
+
+Below is an example of AI-generated vCore suggestions from the Utility.
 
 ![Alt text](readme-assets\image-3.png)
 
@@ -33,9 +35,9 @@ Efficient vCore configuration is crucial for balancing performance and cost in a
 
 ### Requirements
 - Mule Runtime 4 or above
-- Only CloudHub deployment model is supported
+- Currently only CloudHub deployment model is supported
 
-### Connected-app
+### Connected-App
   - A Connected App (client credentials) with the following scopes (make sure to include all Sub Orgs and all environments you want to manage):
     - Runtime Manager
       - Manage Applications
@@ -43,19 +45,18 @@ Efficient vCore configuration is crucial for balancing performance and cost in a
     - General
       - View Environment
       - View Organization
-  - <u>DO NOT</u> give production access to the Connected App if you dont intent to manage your vcores from this UI.
 
-### Properties configurations
+### Properties Configurations
 
-- Organization Id and connected app credentials are defined in `/src/main/resources/properties.yaml`.
+- Organization Id and Connected-App credentials are defined in `/src/main/resources/properties.yaml`.
 - Login user configurations are also defined in `/src/main/resources/properties.yaml`. Leave the values for these empty and give the values in the settings page during deployment.
-- Make sure to encrypt all sensitive data using the Secure Properties Module. provide the security.key value in the settings page. This is already added to mule-artifact.json to be masked.
+- Make sure to encrypt all sensitive data using the Secure Properties Module. Provide the security.key value in the settings page. This is already added to mule-artifact.json to be masked.
 - Password encryption is done using AES Algorithm.
 
 ### LLM Configuration
 
-- LLM Keys used in the Mulesoft AI Chain connector must be specified in file `/src/main/resources/envVars.yaml`.
-- Use your own LLM by changing the configuration in the Mulesoft AI Chain connector config.
+- LLM Keys used in the Mulesoft AI Chain Connector must be specified in file `/src/main/resources/envVars.yaml`.
+- Use your own LLM by changing the configuration in the Mulesoft AI Chain Connector Config.
 
 ### Login User Setup
   - Default Admin user is already setup with password as 'admin'
@@ -65,11 +66,11 @@ Efficient vCore configuration is crucial for balancing performance and cost in a
 
 ## Considerations
 
-- This application uses the Anypoint Platform APIs for to communicate with Cloudhub 1.0.
-- Production environment is not shown in the list of Environments in the UI. A filter is applied to remove the production environment. This can be changed in the dataweave.
+- This application uses the Anypoint Platform APIs to communicate with CloudHub 1.0.
+- Production environment is not shown in the list of Environments in the UI. A filter is applied to remove the production environment. This can be changed in the DataWeave.
 
 ## Final Notes
-Enjoy and provide feedback / contribute :)
+Enjoy and provide your valuable feedback / Contribute :)
 
 
 
