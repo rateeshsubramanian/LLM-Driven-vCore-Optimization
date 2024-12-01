@@ -641,7 +641,7 @@
           modal.appendChild(headButton);
 
 
-          createAISuggestionsTable(modal, data["AI-Suggestions"]);
+          createAISuggestionsContainer(modal, data["AI-Suggestions"]);
 
           // Create a container for charts inside the modal
           var chartsContainer = document.createElement("div");
@@ -843,15 +843,8 @@
         });
     }
 
-    function createAISuggestionsTable(modal, aiSuggestions) {
-    /*   const {
-        "AI-Suggested-WorkerSize": suggestedWorkerSize,
-        "AI-Suggested-Workers": suggestedWorkers,
-        analysisOfDataset,
-        justification,
-      } = aiSuggestions; */
-
-      const tableContainer = document.createElement("div");
+    function createAISuggestionsContainer(modal, aiSuggestions) {
+      const aiSuggestionContainer = document.createElement("div");
 
       const title = document.createElement("h4");
       title.innerHTML = "AI Suggestions and Analysis";
@@ -859,83 +852,18 @@
       title.style.marginBottom = "15px";
       title.style.color = "#2c3e50";
       title.style.fontWeight = "bold";
-      tableContainer.appendChild(title);
+      aiSuggestionContainer.appendChild(title);
 
       const converter = new showdown.Converter();
-      var aiText = document.createElement("div");
+      var aiSuggestionsDiv = document.createElement("div");
       const html = converter.makeHtml(aiSuggestions);
-      aiText.innerHTML = html;
-      aiText.style.backgroundColor = "#CDC1FF";
-      aiText.style.width = "90%";
-      aiText.style.marginLeft = "5%";
-      aiText.style.padding = "15px";
-      tableContainer.appendChild(aiText);
-
-      const table = document.createElement("table");
-      table.style.width = "50%";
-      table.style.borderCollapse = "collapse";
-      table.style.fontSize = "14px";
-      table.style.marginLeft = "25%";
-
-      const createTableRow = (label, value) => {
-        const row = document.createElement("p");
-        row.style.backgroundColor = "#fff !important";
-
-/*         const labelCell = document.createElement("td");
-        labelCell.style.padding = "10px";
-        labelCell.style.border = "1px solid #ddd";
-        labelCell.style.fontWeight = "bold";
-        labelCell.style.color = "#333";
-        labelCell.style.textAlign = "left";
-        labelCell.style.whiteSpace = "nowrap";
-        labelCell.style.backgroundColor = "#CDC1FF";
-
-        labelCell.innerHTML = label; */
-
-        const valueCell = document.createElement("p");
-        valueCell.style.padding = "10px";
-        valueCell.style.border = "1px solid #ddd";
-        valueCell.style.fontWeight = "bold";
-        valueCell.style.color = "#333";
-        valueCell.style.textAlign = "left";
-        valueCell.innerHTML = value;
-        valueCell.style.backgroundColor = "#CDC1FF";
-
-      //  row.appendChild(labelCell);
-      //  row.appendChild(valueCell);
-
-        return valueCell;
-      };
-
-      // Append rows for AI suggestions
-    /*   table.appendChild(
-        createTableRow("AI Suggestions", aiSuggestions)
-      ); */
-     /*  table.appendChild(
-        createTableRow("AI Suggested Workers", suggestedWorkers)
-      );
-      table.appendChild(createTableRow("Justification", justification));
-
-      // Combine average and max values into single rows
-      table.appendChild(
-        createTableRow(
-          "CPU Usage (%)",
-          `Max: ${analysisOfDataset.maxCpuUsagePercentage.toFixed(
-            2
-          )}, Avg: ${analysisOfDataset.avgCpuUsagePercentage.toFixed(2)}`
-        )
-      );
-      table.appendChild(
-        createTableRow(
-          "Memory Usage (%)",
-          `Max: ${analysisOfDataset.maxMemoryUsagePercentage.toFixed(
-            2
-          )}, Avg: ${analysisOfDataset.avgMemoryUsagePercentage.toFixed(2)}`
-        )
-      ); */
-
-     // tableContainer.appendChild(createTableRow("AI Suggestions", aiSuggestions));
-      modal.appendChild(tableContainer);
+      aiSuggestionsDiv.innerHTML = html;
+      aiSuggestionsDiv.style.backgroundColor = "#CDC1FF";
+      aiSuggestionsDiv.style.width = "90%";
+      aiSuggestionsDiv.style.marginLeft = "5%";
+      aiSuggestionsDiv.style.padding = "15px";
+      aiSuggestionContainer.appendChild(aiSuggestionsDiv);
+      modal.appendChild(aiSuggestionContainer);
     }
   </script>
   <script type="text/javascript">
