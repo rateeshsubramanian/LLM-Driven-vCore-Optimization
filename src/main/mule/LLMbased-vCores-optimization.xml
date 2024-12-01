@@ -410,7 +410,7 @@ write(payload, "application/json",  { "indent": false })]]]></ms-aichain:dataset
 			<ms-aichain:template ><![CDATA[#["Given the dataset with statistics for events, CPU usage, and memory usage of Mule API application " ++ vars.vApplicationName ++ ", and the current worker size of " ++ vars.vWorkerSizeValue ++ " with number of workers as " ++ vars.vWorkers ++ ", determine the optimal worker size and worker settings. Ensure that the settings are minimal to avoid wasting vcores. Use the provided data and do not make assumptions. You may refer to this link: https://docs.mulesoft.com/cloudhub/cloudhub-architecture."]]]></ms-aichain:template>
 			<ms-aichain:instructions ><![CDATA[provide the response in json with fields AI-Suggested-WorkerSize, AI-Suggested-Workers, analysisOfDataset(maxCpuUsagePercentage,maxMemoryUsagePercentage,avgCpuUsagePercentage,avgMemoryUsagePercentage) and justification. AI-Suggested-WorkerSize and AI-Suggested-Workers will be same as existing settings if no changes are needed. If changes are needed then suggest the new settings in AI-Suggested-WorkerSize and AI-Suggested-Workers. Note that Maximum workers possible in mule is 8. The vcore sizes available are 0.1,0.2,1,2,4,8,16.]]></ms-aichain:instructions>
 		</ms-aichain:agent-define-prompt-template>
-		<ee:transform doc:name="Read Response" doc:id="828590ce-3b7f-48a8-8434-44ecb7742523" >
+		<ee:transform doc:name="Read LLM suggested vCores Response" doc:id="828590ce-3b7f-48a8-8434-44ecb7742523" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
 output application/json
