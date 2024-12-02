@@ -1,5 +1,8 @@
 # Default Properties
-
+credentials:
+  client-secret: "![]"
+  org-id: "![]"
+  client-id: "![]"
 admin:
   user: "admin"
   pass: "admin"
