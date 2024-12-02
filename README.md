@@ -15,9 +15,9 @@ Table of Contents
 # LLM Based vCores Management and Optimization
 The **LLM Based vCores Management and Optimization utility** is a Mule application with a User Interface which helps the user to efficiently manage the vCores of each application based on AI Suggestions. This utility will connect to your CloudHub Organization and list the Environments and Applications in each environment.
 
-User can view the stats of the Mule application by clicking on stats icon <img src="readme-assets/image-1.png" width="5%" alt="banner"> in the 'Actions' column which shows the statistics(Events, CPU and Memory) of last 5 days and also shows the AI Suggested worker and worker size based on the current CPU/Memory utilization. The AI suggestions are provided by analysing the existing CPU/Memory usages of respective applications.
+User can view the stats of the Mule application by clicking on stats icon <img src="readme-assets/stats.png" width="5%" alt="banner"> in the 'Actions' column which shows the statistics(Events, CPU and Memory) of last 5 days and also shows the AI Suggested worker and worker size based on the current CPU/Memory utilization. The AI suggestions are provided by analysing the existing CPU/Memory usages of respective applications.
 
-Based on the AI Recommendations user can update the workers by clicking on edit button <img src="readme-assets/image.png" width="5%" alt="banner"> in Actions column which enables the worker selection fields, once the workers are updated, user can then click update icon <img src="readme-assets/image-2.png" width="5%" alt="banner"> in Actions column to update the workers in CloudHub.
+Based on the AI Recommendations user can update the workers by clicking on edit button <img src="readme-assets/edit.png" width="5%" alt="banner"> in Actions column which enables the worker selection fields, once the workers are updated, user can then click update icon <img src="readme-assets/update.png" width="5%" alt="banner"> in Actions column to update the workers in CloudHub.
 
 
 Efficient vCore Configuration is crucial for balancing Performance and Cost in any MuleSoft Integration Setup. With the help of MuleSoft's AI Chain Connectors, this utility simplifies the process by:
@@ -29,7 +29,7 @@ Efficient vCore Configuration is crucial for balancing Performance and Cost in a
 
 Below is an example of AI-generated vCore suggestions from the Utility.
 
-<img src="readme-assets/image-3.jpeg" width="5%" alt="banner">
+<img src="readme-assets/vCoreAISuggestions.png" width="100%" alt="banner">
 
 ## Installation
 
