@@ -1,17 +1,16 @@
 {
-  "minMuleVersion": "4.5.0",
+  "minMuleVersion": "4.6.0",
   "secureProperties": [
-		"security.key",
-		"admin.user",
-		"admin.pass"		
-	],
-      "classLoaderModelLoaderDescriptor": {
-        "id": "mule",
-        "attributes": {
-            "exportedResources": [
-                "/org/mule/myapp/beans.xml"
-            ]
-        }
+    "security.key",
+    "admin.user",
+    "admin.pass"
+  ],
+  "classLoaderModelLoaderDescriptor": {
+    "id": "mule",
+    "attributes": {
+      "exportedResources": [
+        "/org/mule/myapp/beans.xml"
+      ]
     }
-  
+  }
 }
